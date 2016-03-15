@@ -5,9 +5,7 @@
   <div class="nav-wrapper principal-nav">
     <a href="/" class="brand-logo center">NewsPay</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <% if user_signed_in? %>
-            <%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %>
-          <% else %> 
+          <% unless user_signed_in? %>
             <li><%= link_to 'Sign_up', new_user_registration_path %> </li>
             <li><%= link_to 'Sign_in', new_user_session_path %></li>
           <% end %>

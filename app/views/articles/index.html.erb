@@ -9,10 +9,13 @@
         <p><%= article.lead %></p>
       </div>
       <div class="card-writter">
-        <p>
-          Escrito por: <%= User.find(article.user_id).name %>
+
+        <div class="chip">
+          <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
+          <%= User.find(article.user_id).name %>
           <%= article.created_at.strftime("- %d/%m/%Y - %T") %>
-        </p>
+        </div>
+
       </div>
       <div class="card-action">
         <% if article.access?(current_user) %>
