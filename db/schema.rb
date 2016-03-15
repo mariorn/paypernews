@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160315154657) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -35,15 +38,15 @@ ActiveRecord::Schema.define(version: 20160315154657) do
     t.datetime "photo2_updated_at"
   end
 
-  add_index "articles", ["user_id"], name: "index_articles_on_user_id"
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "articles_categories", force: :cascade do |t|
     t.integer "category_id"
     t.integer "article_id"
   end
 
-  add_index "articles_categories", ["article_id"], name: "index_articles_categories_on_article_id"
-  add_index "articles_categories", ["category_id"], name: "index_articles_categories_on_category_id"
+  add_index "articles_categories", ["article_id"], name: "index_articles_categories_on_article_id", using: :btree
+  add_index "articles_categories", ["category_id"], name: "index_articles_categories_on_category_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -58,8 +61,8 @@ ActiveRecord::Schema.define(version: 20160315154657) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "transactions", ["article_id"], name: "index_transactions_on_article_id"
-  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
+  add_index "transactions", ["article_id"], name: "index_transactions_on_article_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -87,7 +90,7 @@ ActiveRecord::Schema.define(version: 20160315154657) do
     t.datetime "avatar_updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
