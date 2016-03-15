@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+          
+
+  </head>
+  <body>
+
+
+    <%= render "layouts/sign" %>
+
+    <% if current_user %>
+      <%= render "layouts/categories" %>
+    <% end %>
+
+
+
+    <div class="row">
+      <div class="col s9">
+
+        <%= yield %>
+
+      </div>
+      <div class="col s3">
+
+        <% if current_user %>
+
+        <!-- HAY QUE CONTROLAR LOS PERMISOS DE CADA USUARIO -->
+          <%= render "layouts/aside" %>
+        <% else %>
+
+        <% end %>
+
+
+        
+
+
+        </div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,93 @@
+
+
+  <div class="col s4 offset-s4">
+    <%= form_for(@user) do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+          <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :last_name %><br />
+            <%= f.text_field :last_name, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :alias %><br />
+            <%= f.text_field :alias, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :nif %><br />
+            <%= f.text_field :nif, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :phone %><br />
+            <%= f.text_field :phone, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :genre %><br />
+            <%= f.text_field :genre, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :location %><br />
+            <%= f.text_field :location, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :credit_card %><br />
+            <%= f.text_field :credit_card, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :biography %><br />
+            <%= f.text_field :biography, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :avatar %><br />
+            <%= f.text_field :avatar, autofocus: true %>
+          </div>
+
+
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+
+  </div>
+

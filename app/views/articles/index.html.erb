@@ -1,0 +1,27 @@
+
+<div class="row">
+  <% @articles.each do |article| %>
+
+    <div class="card col s6">
+
+      <div class="card-content">
+        <span class="card-title"><%= article.title %></span>
+        <p><%= article.lead %></p>
+      </div>
+      <div class="card-action">
+        <% if article.access?(current_user) %>
+          <%= link_to("Show", article_path(article)) %> 
+          <%= link_to("Edit", edit_user_article_path(current_user, article)) %> 
+          <%= link_to("Delete", user_article_path(current_user, article), method: 'DELETE') %> 
+        <% else %>
+          <%= link_to("Buy", article_path(article)) %> 
+        <% end %>
+
+      </div>
+
+    </div>
+  <% end %>
+</div>
+
+
+

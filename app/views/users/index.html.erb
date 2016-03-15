@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col s8 offset-s2">
+    <h2>Users:</h2>
+    <ul class="collection">
+      <% @users.each do |user| %>
+        
+        <li class="collection-item"> 
+
+          <div class="row delete_margin_bottom valign-wrapper">
+            <div class="col s6 valign">
+              <h5> <%= "#{user.name} - " %> <%= "#{user.email}" %> </h5>
+            </div>
+            <div class="col s6 valign">
+              <%= link_to("Edit", edit_user_path(user), class: "waves-effect waves-light btn") %>  
+            </div>
+          </div>
+        </li>
+
+      <% end %>
+    </ul>
+
+  </div>
+
+</div>

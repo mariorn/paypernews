@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Lead:</strong>
+  <%= @article.lead %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @article.body %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @article.price %>
+</p>
+
+<p>
+  <strong>Visits:</strong>
+  <%= @article.visits %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @article.score %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_article_path(current_user, @article) %> |
+<%= link_to 'Back', articles_path %>

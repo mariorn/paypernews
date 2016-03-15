@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+
+#panell{
+     margin-top: 100px;
+     padding: 0px;
+   }
+#loginbtn{
+     float: right;
+     margin-bottom: 10px;
+     margin-right: 10px;
+}
+#title{
+  background-color: #20638f;
+  color: white;
+  padding: 8px;
+  margin-top: 0px;
+  text-align: center;
+}
+form{
+  padding:5px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+#username,#password{
+ margin-left: 20px;
+ margin-right: 20px;
+}
+#checkbox{
+ margin-left: 30px;
+}
+#div-button-form{
+  text-align: center;
+}
+
+.add-principal-color{
+  background-color: #20638f !important;
+}
+
+.btn-form{
+  background-color: #20638f !important;
+}
+
+.principal-nav{
+  background-color: #20638f !important;
+}
+
+.categories-nav{
+  background-color: white !important;
+}
+
+
+.category-item{
+  padding: 0 7px !important;
+  font-size: 12px;
+}
+
+.principal-nav a:visited{
+  color: white !important;
+}
+.categories-nav a:visited{
+  color: #20638f !important;
+}
+nav ul a{
+  padding: 23px 12px !important;
+}
+
+.tabs .tab a {
+  color: #20638f !important;
+}
+
+.tabs .indicator {
+  color: #20638f !important;
+}
+
+.category-item:hover{
+  background-color: white;
+}
+
+
+
+
+
+
+
+
+
