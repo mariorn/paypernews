@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'pry'
 gem 'devise'
 gem 'rspec-rails'
+gem 'figaro'
 
 gem "paperclip", "~> 4.3"
 
