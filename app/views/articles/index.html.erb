@@ -8,6 +8,12 @@
         <span class="card-title"><%= article.title %></span>
         <p><%= article.lead %></p>
       </div>
+      <div class="card-writter">
+        <p>
+          Escrito por: <%= User.find(article.user_id).name %>
+          <%= article.created_at.strftime("- %d/%m/%Y - %T") %>
+        </p>
+      </div>
       <div class="card-action">
         <% if article.access?(current_user) %>
           <%= link_to("Show", article_path(article)) %> 
@@ -18,6 +24,7 @@
         <% end %>
 
       </div>
+
 
     </div>
   <% end %>
