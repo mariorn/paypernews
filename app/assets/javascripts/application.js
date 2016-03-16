@@ -13,9 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-$(".hover").mouseleave(
-    function () {
-      $(this).removeClass("hover");
-    }
-  );
 

@@ -31,8 +31,6 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(articles_params)
     @article.user_id = current_user.id
-    
-    binding.pry
 
     @category = Category.find_by(name: params['category'])
 
@@ -60,6 +58,15 @@ class ArticlesController < ApplicationController
     end      
     redirect_to articles_url
   end
+
+  def section
+    
+    @user = current_user
+    @articles = Category.find_by(id: params[:id]).articles.order(created_at: :desc)
+  end
+
+
+
 
   private
 

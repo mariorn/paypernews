@@ -12,3 +12,37 @@ $(function() {
     });
 });
 
+
+
+$(".hover").mouseleave(
+    function () {
+      $(this).removeClass("hover");
+    }
+);
+
+
+var filterCards = function(){
+  var myTitleCards = $('.my-card-title');
+  var myLeadCards = $('.my-card-lead');
+
+  for (var i = 0; i < myTitleCards.length; ++i) {
+    if(myTitleCards[i].innerText.length > 60){
+      myTitleCards[i].innerText = myTitleCards[i].innerText.substring(0,60) + '...';
+    }
+    if(myLeadCards[i].innerText.length > 50){
+      myLeadCards[i].innerText = myLeadCards[i].innerText.substring(0,50) + '...';
+    }
+  }
+}
+
+
+
+
+$(document).on('ready', function(){
+
+  filterCards();
+
+
+
+
+});

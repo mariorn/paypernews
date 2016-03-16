@@ -2,14 +2,23 @@
 
 
 <nav>
-  <div class="nav-wrapper principal-nav">
-    <a href="/" class="brand-logo center">NewsPay</a>
+  <div class="row">
+    <div class="nav-wrapper principal-nav col s12">
+      <div class="input-field col s4">
+        <input id="search" type="search" required>
+        <label for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+      <div class=" col s8">
+        <a href="/" class="brand-logo center">NewsPay</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% unless user_signed_in? %>
             <li><%= link_to 'Regístrate', new_user_registration_path %> </li>
             <li><%= link_to 'Login', new_user_session_path %></li>
           <% end %>
         </ul>
+      </div>
+    </div>
   </div>
 </nav>
 
