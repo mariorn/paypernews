@@ -32,6 +32,12 @@ class ArticlesController < ApplicationController
     @article = Article.new(articles_params)
     @article.user_id = current_user.id
     
+    binding.pry
+
+    @category = Category.find_by(name: params['category'])
+
+    @article.categories << @category
+
     if @article.save
       current_user.articles << @article
       redirect_to action: 'index', controller: 'articles'

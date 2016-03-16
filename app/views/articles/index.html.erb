@@ -1,37 +1,47 @@
 
+
 <div class="row">
-  <% @articles.each do |article| %>
+  <div class="col s9">
+    <div class="row">
+      <% @articles.each do |article| %>
 
-    <div class="card col s6">
+        <div class="card col s6">
 
-      <div class="card-content">
-        <span class="card-title"><%= article.title %></span>
-        <p><%= article.lead %></p>
-      </div>
-      <div class="card-writter">
+          <div class="card-content">
+            <span class="card-title"><%= article.title %></span>
+            <p><%= article.lead %></p>
+          </div>
+          <div class="card-writter">
 
-        <div class="chip">
-          <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
-          <%= User.find(article.user_id).name %>
-          <%= article.created_at.strftime("- %d/%m/%Y - %T") %>
+            <div class="chip">
+              <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
+              <%= User.find(article.user_id).name %>
+              <%= article.created_at.strftime("- %d/%m/%Y - %T") %>
+            </div>
+
+          </div>
+          <div class="card-action">
+            <% if article.access?(current_user) %>
+              <%= link_to("Show", article_path(article)) %> 
+              <%= link_to("Edit", edit_user_article_path(current_user, article)) %> 
+              <%= link_to("Delete", user_article_path(current_user, article), method: 'DELETE') %> 
+            <% else %>
+              <%= link_to("Buy", article_path(article)) %> 
+            <% end %>
+
+          </div>
         </div>
-
-      </div>
-      <div class="card-action">
-        <% if article.access?(current_user) %>
-          <%= link_to("Show", article_path(article)) %> 
-          <%= link_to("Edit", edit_user_article_path(current_user, article)) %> 
-          <%= link_to("Delete", user_article_path(current_user, article), method: 'DELETE') %> 
-        <% else %>
-          <%= link_to("Buy", article_path(article)) %> 
-        <% end %>
-
-      </div>
-
-
+      <% end %>
     </div>
-  <% end %>
+
+  </div>
+  <div class="col s3">
+
+    <%= render "layouts/aside" %>
+
+  </div>
 </div>
+
 
 
 

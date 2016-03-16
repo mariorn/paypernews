@@ -1,84 +1,114 @@
 <div class="row">
-  <div class="col s4 offset-s4">
-    <h2>Sign up</h2>
+  <div class="col s6 offset-s3">
+    <h2 class="center-align">Alta de usuario</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
-      <div class="field">
-        <%= f.label :name %><br />
-        <%= f.text_field :name, autofocus: true %>
-      </div>
+      <ul class="collapsible" data-collapsible="accordion">
 
-      <div class="field">
-        <%= f.label :last_name %><br />
-        <%= f.text_field :last_name, autofocus: true %>
-      </div>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">done</i>Datos obligatorios</div>
+          <div class="collapsible-body col s11 offset-s1">
 
-      <div class="field">
-        <%= f.label :alias %><br />
-        <%= f.text_field :alias, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :name %><br />
+              <%= f.text_field :name, autofocus: true %>
+            </div>
 
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div>
 
-      <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
+            <div class="field">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
 
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            </div>
 
-      <div class="field">
-        <%= f.label :nif %><br />
-        <%= f.text_field :nif, autofocus: true %>
-      </div>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">done_all</i>Datos opcionales</div>
+          <div class="collapsible-body col s11 offset-s1">
 
-      <div class="field">
-        <%= f.label :phone %><br />
-        <%= f.text_field :phone, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :last_name %><br />
+              <%= f.text_field :last_name, autofocus: true %>
+            </div>
 
-      <div class="field">
-        <%= f.label :genre %><br />
-        <%= f.text_field :genre, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :alias %><br />
+              <%= f.text_field :alias, autofocus: true %>
+            </div>
 
-      <div class="field">
-        <%= f.label :location %><br />
-        <%= f.text_field :location, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :nif %><br />
+              <%= f.text_field :nif, autofocus: true %>
+            </div>
 
-      <div class="field">
-        <%= f.label :credit_card %><br />
-        <%= f.text_field :credit_card, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :phone %><br />
+              <%= f.text_field :phone, autofocus: true %>
+            </div>
 
-      <div class="field">
-        <%= f.label :biography %><br />
-        <%= f.text_field :biography, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :genre %><br />
+              <%= f.text_field :genre, autofocus: true %>
+            </div>
 
-      <div class="field">
-        <%= f.label :avatar %><br />
-        <%= f.text_field :avatar, autofocus: true %>
-      </div>
+            <div class="field">
+              <%= f.label :location %><br />
+              <%= f.text_field :location, autofocus: true %>
+            </div>
 
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">mode_edit</i>¿Quieres publicar tus noticias?</div>
+          <div class="collapsible-body col s11 offset-s1">
 
-      <div class="actions">
-        <%= f.submit "Sign up" %>
-      </div>
+            <div class="field">
+              <%= f.label :credit_card %><br />
+              <%= f.text_field :credit_card, autofocus: true %>
+            </div>
+
+            <div class="field">
+              <%= f.label :biography %><br />
+              <%= f.text_area :biography, autofocus: true %>
+            </div>
+
+            <div class="field">
+              <%= f.label :Foto %><br />
+              <%= f.file_field :avatar, autofocus: true %>
+            </div>
+
+            <div class="field">
+              <label>Términos y condiciones</label><br />
+              <p>
+                <input name="user[conditions]" type="checkbox" id="condiciones" />
+                <label for="condiciones">Aceptar</label>
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header actions">
+            <%= f.submit "Guardar" , class: 'waves-light btn' %>
+          </div>
+        </li>
+
+      </ul>
+
     <% end %>
 
-    <%= render "devise/shared/links" %>
   </div>
-</dvi>
+</div>

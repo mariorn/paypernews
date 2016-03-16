@@ -34,8 +34,9 @@
 
 
         <p class="range-field">
-          <input type="range" id="price-article" min="10" max="100" />
+          <input type="range" name="article[price]" id="price-article" min="10" max="100" />
         </p>
+
 
 
       </div>
@@ -44,11 +45,11 @@
       <div class="field">
         <%= f.label :category %><br>
         <div class="input-field col s12">
-          <select class="browser-default">
+          <select name="category" class="browser-default">
             <option id="select-form" value="">Category</option>
 
             <% Category.all.each_with_index do |cat, index| %>
-              <option value= <%= cat.name %> ><%= cat.name %></option>
+              <option  value= <%= cat.name %> ><%= cat.name %></option>
             <% end %>
 
           </select>

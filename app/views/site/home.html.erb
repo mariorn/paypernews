@@ -1,17 +1,8 @@
 
 
-  <div class="row">
-    <% Category.all.each do |cat| %>
+<% if current_user %>
+  <%= render "site/home_registered" %>
+<% else %>
+  <%= render "site/home_by_defect" %>
+<% end %>
 
-      <div class="card col s4">
-
-            <figure class="card">
-              <figcaption>
-                <a class="category-item" href="/articles"> <%= cat.name %> </a> 
-              </figcaption>
-
-            </figure>
-
-      </div>
-    <% end %>
-  </div>

@@ -27,27 +27,11 @@
 
 
     <div class="row">
-      <div class="col s9">
+      <div class="col s12">
 
         <%= yield %>
 
       </div>
-      <div class="col s3">
-
-        <% if current_user %>
-
-        <!-- HAY QUE CONTROLAR LOS PERMISOS DE CADA USUARIO -->
-          <%= render "layouts/aside" %>
-        <% else %>
-
-        <% end %>
-
-
-        
-
-
-        </div>
-
     </div>
 
   </body>
