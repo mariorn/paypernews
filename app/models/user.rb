@@ -20,4 +20,12 @@ class User < ActiveRecord::Base
     User.where(email: email).first
   end
 
+  def is_admin?
+    self.admin
+  end
+
+  def is_writer?
+    self.writer
+  end
+
 end

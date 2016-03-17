@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+resources :articles
+resources :categories
+resources :charges
+resources :transactions
+
+    root to: "users#index"
+  end
+
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get '/' => 'site#home'
