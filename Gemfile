@@ -5,7 +5,7 @@ gem 'pry'
 gem 'devise'
 gem 'rspec-rails'
 gem 'figaro'
-
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem "paperclip", "~> 4.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

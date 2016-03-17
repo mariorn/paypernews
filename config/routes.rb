@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   get '/section/:id' => 'articles#section'
 
+  resources :articles do
+    resource :charges
+  end
 
   resources :users do
     resources :articles, except: ['index', 'show']

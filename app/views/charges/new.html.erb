@@ -1,0 +1,17 @@
+
+<%= form_tag article_charges_path(@article) do %>
+  <article>
+    <label class="amount">
+      <span>Amount <%= @article.price %> </span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key = <%=Rails.configuration.stripe[:publishable_key] %>
+          data-description = "A month's subscription"
+          data-amount = <%= @article.price %>
+  </script>
+
+  <% end %>
+  
+  

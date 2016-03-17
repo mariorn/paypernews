@@ -20,9 +20,7 @@
         </div>
         <div class="card-action">
           <% if article.access?(current_user) %>
-            <%= link_to("Show", article_path(article)) %> 
-            <%= link_to("Edit", edit_user_article_path(current_user, article)) %> 
-            <%= link_to("Delete", user_article_path(current_user, article), method: 'DELETE') %> 
+            <%= link_to("LEER", article_path(article)) %>
           <% else %>
             <%= link_to("LEER", article_path(article)) %> 
           <% end %>

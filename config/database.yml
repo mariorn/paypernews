@@ -1,9 +1,10 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
+
+general: &general
+  stripe:
+    secret_key: sk_test_5wDwRn3Q2f0hzQWdHXhmqTMF
+    publishable_key: pk_test_wsnymc3x9YV6yTihxjC39Dom
+
+    
 default: &default
  adapter: postgresql
  encoding: unicode
