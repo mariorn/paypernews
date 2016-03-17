@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require datetimepicker
  */
 
 
@@ -133,6 +134,10 @@ nav ul a{
 .fixed-categories a{
   text-decoration: none; 
   padding-bottom: 10px;
+}
+
+.fixed-categories a:visited{
+  color: #20638f; 
 }
 
 .my-border-bottom{

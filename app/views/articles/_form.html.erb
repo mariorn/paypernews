@@ -28,17 +28,20 @@
         <%= f.label :body %><br>
         <%= f.text_area :body %>
       </div>
+
+      <div class="field">
+        <%= f.label :publish_at %><br>
+        <input id="datetimepicker" name="datetimepicker" type="text" >
+      </div>
+
+
       <div class="field">
         <%= f.label :price %><br>
         <%= f.text_field :price %>
 
-
         <p class="range-field">
           <input type="range" name="article[price]" id="price-article" min="10" max="100" />
         </p>
-
-
-
       </div>
 
 
@@ -57,10 +60,6 @@
         </div>
       </div>
       
-      <div class="field">
-        <%= f.label :publish_at %><br>
-        
-      </div>
 
 
       <div class="actions">

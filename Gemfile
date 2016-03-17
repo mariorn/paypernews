@@ -1,3 +1,7 @@
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
+end
+
 source 'https://rubygems.org'
 
 

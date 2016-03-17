@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     @user = current_user
-    @articles = Article.all.order(created_at: :desc)
+    @articles = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
   end
 
   def show
@@ -29,9 +29,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    binding.pry
     @article = Article.new(articles_params)
     @article.user_id = current_user.id
-
+    @article.publish_at = params[:datetimepicker].to_datetime
     @category = Category.find_by(name: params['category'])
 
     @article.categories << @category
@@ -60,12 +61,25 @@ class ArticlesController < ApplicationController
   end
 
   def section
-    
     @user = current_user
-    @articles = Category.find_by(id: params[:id]).articles.order(created_at: :desc)
+    @articles = Category.find_by(id: params[:id]).articles.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
+    render 'index'
   end
 
+  def search
+    @user = current_user
+    @articles_all = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
 
+    @articles = []
+    @titles = @articles_all.pluck(:title)
+
+    @titles.each_with_index do |title, index|
+      @articles << @articles_all[index] if title.downcase.include?(params[:value].downcase)
+    end
+
+    @articles if @articles
+    render 'index'
+  end
 
 
   private
@@ -76,7 +90,7 @@ class ArticlesController < ApplicationController
     end
 
     def articles_params
-      params.require(:article).permit(:title, :lead, :body, :price, :photo1, :photo2)
+      params.require(:article).permit(:title, :lead, :body, :price, :photo1, :photo2, :publish_at)
     end
 
 end

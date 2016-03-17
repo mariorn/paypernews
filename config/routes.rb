@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/articles/:id' => 'articles#show', as: 'article'
 
   get '/section/:id' => 'articles#section'
+  get '/search/:value' => 'articles#search'
 
   resources :articles do
     resource :charges

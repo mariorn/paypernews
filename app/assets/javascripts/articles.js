@@ -12,8 +12,6 @@ $(function() {
     });
 });
 
-
-
 $(".hover").mouseleave(
     function () {
       $(this).removeClass("hover");
@@ -35,6 +33,15 @@ var filterCards = function(){
   }
 }
 
+function controlEnter(e){
+  if(e.which == 13){
+    e.preventDefault();
+    console.log(e.target.value);
+
+    window.location.pathname = "/search/" + e.target.value;
+  }
+}
+
 
 
 
@@ -42,7 +49,22 @@ $(document).on('ready', function(){
 
   filterCards();
 
+  $("#search").keyup(controlEnter);
 
+  $('#datetimepicker').datetimepicker();
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
