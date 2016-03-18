@@ -1,9 +1,16 @@
 class ArticlesController < ApplicationController
+  before_filter :authenticate_writer, only: [:new, :edit, :update, :destroy]
   before_action :set_articles, only: [:show, :edit, :update, :destroy]
 
   def index
     @user = current_user
-    @articles = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
+
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @articles = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
+    end
+
   end
 
   def show
@@ -90,7 +97,11 @@ class ArticlesController < ApplicationController
     end
 
     def articles_params
-      params.require(:article).permit(:title, :lead, :body, :price, :photo1, :photo2, :publish_at)
+      params.require(:article).permit(:title, :lead, :body, :price, :photo1, :photo2, :publish_at, :tag_list)
+    end
+
+    def authenticate_writer
+      redirect_to "/" unless current_user.is_writer?
     end
 
 end

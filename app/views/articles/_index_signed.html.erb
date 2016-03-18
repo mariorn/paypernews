@@ -13,6 +13,12 @@
           </div>
           <div class="card-writer">
 
+            <% if article.tag_list.length > 0 %>
+              <p>
+                #<%= raw article.tag_list.map { |t| link_to t, tag_path(t)}.join(' #') %>
+              </p>
+            <% end %>
+
             <div class="chip">
               <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
               <%= User.find(article.user_id).name %>

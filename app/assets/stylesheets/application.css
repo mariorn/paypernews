@@ -58,11 +58,11 @@ form{
 }
 
 .principal-nav{
-  background-color: #20638f !important;
+  background-color: #20638f;
 }
 
 .categories-nav{
-  background-color: white !important;
+  background-color: white;
 }
 
 
@@ -167,7 +167,9 @@ nav ul a{
 }
 
 #search{
-  height: 50px;
+  height: 35px;
+  margin-top: 12px;
+  margin-bottom: 20px;
 }
 
 .card-writer {

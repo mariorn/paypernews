@@ -17,20 +17,24 @@
     <%= form_for [@user, @article] do |f| %>
 
       <div class="field">
-        <%= f.label :title %><br>
+        <%= f.label :title, "Titular del artículo" %><br>
         <%= f.text_field :title %>
       </div>
       <div class="field">
-        <%= f.label :lead %><br>
+        <%= f.label :lead, "Entradilla del artículo" %><br>
         <%= f.text_area :lead %>
       </div>
       <div class="field">
-        <%= f.label :body %><br>
+        <%= f.label :body, "Cuerpo del artículo" %><br>
         <%= f.text_area :body %>
+      </div>
+      <div class="field">
+        <%= f.label :tag_list, "Tags separados por comas (fun, concert,..)" %><br>
+        <%= f.text_field :tag_list %>
       </div>
 
       <div class="field">
-        <%= f.label :publish_at %><br>
+        <%= f.label :publish_at, "Fecha y hora a la que se quiere publicar el artículo" %><br>
         <input id="datetimepicker" name="datetimepicker" type="text" >
       </div>
 

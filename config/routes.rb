@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
-resources :articles
-resources :categories
-resources :charges
-resources :transactions
+    resources :articles
+    resources :categories
+    resources :charges
+    resources :transactions
 
     root to: "users#index"
   end
@@ -12,12 +12,12 @@ resources :transactions
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get '/' => 'site#home'
-
   get '/articles' => 'articles#index'
   get '/articles/:id' => 'articles#show', as: 'article'
-
   get '/section/:id' => 'articles#section'
   get '/search/:value' => 'articles#search'
+  get '/tags/:tag' => 'articles#index', as: :tag
+
 
   resources :articles do
     resource :charges

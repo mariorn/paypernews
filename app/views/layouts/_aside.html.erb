@@ -5,28 +5,31 @@
       <i class="large mdi-navigation-menu"></i>
     </a>
     <ul>
-      <li>
-        <a class="btn-floating yellow darken-1" href= <%= admin_root_path %> >
-          <i class="material-icons">build</i>
-        </a>
-      </li>
+      <% if current_user.is_admin? %>
+        <li>
+          <a class="btn-floating yellow darken-1" href= <%= admin_root_path %> >
+            <i class="material-icons">build</i>
+          </a>
+        </li>
+      <% end %>
+      <% if current_user.is_writer? %>
       <li>
         <a class="btn-floating green" href= <%= new_user_article_path(current_user) %>>
           <i class="material-icons">mode_edit</i>
         </a>
       </li>
-      <li>
-        <a class="btn-floating blue">
-          <i class="material-icons">insert_chart</i>
-        </a>
-      </li>
-      <li>
-        <a class="btn-floating teal" href= <%= edit_user_path(current_user) %>>
-          <i class="material-icons">perm_identity</i>
-        </a>
-      </li>
-
+      <% end %>
       <% if user_signed_in? %>
+        <li>
+          <a class="btn-floating blue">
+            <i class="material-icons">insert_chart</i>
+          </a>
+        </li>
+        <li>
+          <a class="btn-floating teal" href= <%= edit_user_path(current_user) %>>
+            <i class="material-icons">perm_identity</i>
+          </a>
+        </li>
         <li>
           <a data-method="delete" class="btn-floating black" 
             href= <%= destroy_user_session_path %> >
