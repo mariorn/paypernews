@@ -1,5 +1,4 @@
 
-
 <div class="row">
   <% @articles.each do |article| %>
 
@@ -10,6 +9,12 @@
           <p class="my-card-lead"><%= article.lead %></p>
         </div>
         <div class="card-writer">
+
+          <% if article.tag_list.length > 0 %>
+            <p>
+              #<%= raw article.tag_list.map { |t| link_to t, tag_path(t)}.join(' #') %>
+            </p>
+          <% end %>
 
           <div class="chip">
             <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
@@ -22,7 +27,7 @@
           <% if article.access?(current_user) %>
             <%= link_to("LEER", article_path(article)) %>
           <% else %>
-            <%= link_to("LEER", article_path(article)) %> 
+            <%= link_to("LEER", new_user_session_path) %> 
           <% end %>
 
         </div>
@@ -30,4 +35,6 @@
     </div>
   <% end %>
   </div>
+  <%= will_paginate @articles, previous_label: "Anteriores", next_label: "Posteriores", inner_window: 2, outer_window: 0, :class => "flickr_pagination" %>
+
 

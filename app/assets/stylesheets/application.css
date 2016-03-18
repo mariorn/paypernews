@@ -152,7 +152,7 @@ nav ul a{
     position: relative;
     height: 314px;
     margin: 0.5rem 0 1rem 0;
-    background-color: #fff;
+    
     transition: box-shadow .25s;
     border-radius: 2px;
 }
@@ -166,11 +166,6 @@ nav ul a{
     height: 55px;
 }
 
-#search{
-  height: 35px;
-  margin-top: 12px;
-  margin-bottom: 20px;
-}
 
 .card-writer {
     margin-bottom: 5px;
@@ -183,6 +178,18 @@ nav ul a{
 .form-pay-article{
   position: relative;
   bottom: 1rem;
+}
+
+.my-logo.brand-logo{
+  padding: 5px;
+  height: 100%;
+
+}
+
+
+.my-sign-buttons.right{
+  padding: 5px;
+  height: 100%;
 }
 
 

@@ -6,9 +6,9 @@ class ArticlesController < ApplicationController
     @user = current_user
 
     if params[:tag]
-      @articles = Article.tagged_with(params[:tag])
+      @articles = Article.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10)
     else
-      @articles = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
+      @articles = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     end
 
   end
@@ -36,7 +36,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    binding.pry
     @article = Article.new(articles_params)
     @article.user_id = current_user.id
     @article.publish_at = params[:datetimepicker].to_datetime
@@ -69,7 +68,7 @@ class ArticlesController < ApplicationController
 
   def section
     @user = current_user
-    @articles = Category.find_by(id: params[:id]).articles.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
+    @articles = Category.find_by(id: params[:id]).articles.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     render 'index'
   end
 

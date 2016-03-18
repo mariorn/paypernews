@@ -1,35 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col s9">
+      <h4 class="center-align"> <%= @article.title %></h4>
+      <h6> <%= @article.lead %></h6>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+      <p>
+        <%= @article.body %>
+      </p>
 
-<p>
-  <strong>Lead:</strong>
-  <%= @article.lead %>
-</p>
+      <p>
+        <strong>Visits:</strong>
+        <%= @article.visits %>
+      </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @article.body %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @article.price %>
-</p>
-
-<p>
-  <strong>Visits:</strong>
-  <%= @article.visits %>
-</p>
-
-<p>
-  <strong>Score:</strong>
-  <%= @article.score %>
-</p>
+      <p>
+        <strong>Score:</strong>
+        <%= @article.score %>
+      </p>
 
 
-<%= link_to 'Edit', edit_user_article_path(current_user, @article) %> |
-<%= link_to 'Back', articles_path %>
+      <%= link_to 'Volver', articles_path %>
+    </div>
+
+    <div class="col s3">
+      <%= render "layouts/aside" %>
+    </div>
+  </div>
+</div>

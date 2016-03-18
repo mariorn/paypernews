@@ -1,3 +1,11 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.background-4 {
+ background: #20638f;
+ background-image: -webkit-radial-gradient(top, circle cover, #20638f 0%, #195175 90%);
+ background-image: -moz-radial-gradient(top, circle cover, #20638f 0%, #195175 90%);
+ background-image: -o-radial-gradient(top, circle cover, #20638f 0%, #195175 90%);
+ background-image: radial-gradient(top, circle cover, #20638f 0%, #195175 90%);
+}
