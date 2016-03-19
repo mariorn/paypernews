@@ -27,8 +27,8 @@ var filterCards = function(){
     if(myTitleCards[i].innerText.length > 60){
       myTitleCards[i].innerText = myTitleCards[i].innerText.substring(0,60) + '...';
     }
-    if(myLeadCards[i].innerText.length > 50){
-      myLeadCards[i].innerText = myLeadCards[i].innerText.substring(0,50) + '...';
+    if(myLeadCards[i].innerText.length > 70){
+      myLeadCards[i].innerText = myLeadCards[i].innerText.substring(0,70) + '...';
     }
   }
 }

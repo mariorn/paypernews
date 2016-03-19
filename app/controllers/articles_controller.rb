@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class ArticlesController < ApplicationController
   before_filter :authenticate_writer, only: [:new, :edit, :update, :destroy]
   before_action :set_articles, only: [:show, :edit, :update, :destroy]
@@ -62,7 +64,7 @@ class ArticlesController < ApplicationController
   def destroy
     if @article.owner?(current_user)
       @article.destroy
-    end      
+    end
     redirect_to articles_url
   end
 
@@ -83,7 +85,7 @@ class ArticlesController < ApplicationController
       @articles << @articles_all[index] if title.downcase.include?(params[:value].downcase)
     end
 
-    @articles if @articles
+    @articles = @articles.paginate(page: params[:page], per_page: 10)
     render 'index'
   end
 

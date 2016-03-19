@@ -31,12 +31,12 @@
           </a>
         </li>
         <li>
-          <a data-method="delete" class="btn-floating black" 
+          <a data-method="delete" class="btn-floating black"
             href= <%= destroy_user_session_path %> >
             <i class="material-icons">power_settings_new</i>
           </a>
         </li>
-      <% else %> 
+      <% else %>
         <li>
           <a class="btn-floating green" href= <%= new_user_registration_path %> >
             <i class="material-icons">power_settings_new</i>
@@ -50,38 +50,92 @@
       <% end %>
     </ul>
   </div>
-
+  <% get_redis %>
    <div class="col s12">
-      <div class="card blue-grey lighten-4">
-         <div class="card-content">
+      <div class="ranking-cards">
           <h5>Tags actuales:</h5>
           <div id="tag_cloud">
-            <% tag_cloud Article.tag_counts, %w[s m l] do |tag, css_class| %>  
+            <% tag_cloud Article.tag_counts, %w[s m l] do |tag, css_class| %>
               <%= link_to tag.name, tag_path(tag.name), class: css_class %>
               <% end %>
           </div>
-         </div>
       </div>
    </div>
    <div class="col s12">
-      <div class="card blue-grey lighten-4">
-         <div class="card-content">
-            <%= link_to("Articles", articles_path, class: "waves-effect waves-light btn") %> 
-         </div>
+      <div class="ranking-cards">
+        <h5>Más vistas:</h5>
+        <% @redis_recents.each do |article| %>
+
+          <% if Article.find(article['id'].to_i).access?(current_user) %>
+            <p>
+              <%= link_to(article['title'], article_path(article['id'].to_i)) %>
+            </p>
+          <% else %>
+            <p>
+              <%= article['title'] %>
+            </p>
+            <div class="center-align">
+            <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
+              <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                      data-key = <%= Rails.configuration.stripe[:publishable_key] %>
+                      data-description = "An article subscription"
+                      data-amount = <%= article['price'].to_i %> >
+              </script>
+            <% end %>
+            </div>
+          <% end %>
+
+        <% end %>
       </div>
    </div>
    <div class="col s12">
-      <div class="card blue-grey lighten-4">
-         <div class="card-content">
-            <%= link_to("Users", users_path, class: "waves-effect waves-light btn") %>
-         </div>
+      <div class="ranking-cards">
+         <h5>Mejor puntuadas:</h5>
+         <% @redis_score.each do |article| %>
+           <% if Article.find(article['id'].to_i).access?(current_user) %>
+             <p>
+               <%= link_to(article['title'], article_path(article['id'].to_i)) %>
+             </p>
+           <% else %>
+             <p>
+               <%= article['title'] %>
+             </p>
+             <div class="center-align">
+             <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
+               <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                       data-key = <%= Rails.configuration.stripe[:publishable_key] %>
+                       data-description = "An article subscription"
+                       data-amount = <%= article['price'].to_i %> >
+               </script>
+             <% end %>
+           </div>
+           <% end %>
+         <% end %>
       </div>
    </div>
    <div class="col s12">
-      <div class="card blue-grey lighten-4">
-         <div class="card-content">
-            <%= link_to("Create User", new_user_path, class: "waves-effect waves-light btn") %> 
-         </div>
+      <div class="ranking-cards">
+         <h5>Más recientes:</h5>
+         <% @redis_recents.each do |article| %>
+           <% if Article.find(article['id'].to_i).access?(current_user) %>
+             <p>
+               <%= link_to(article['title'], article_path(article['id'].to_i)) %>
+             </p>
+           <% else %>
+             <p>
+               <%= article['title'] %>
+             </p>
+            <div class="center-align">
+             <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
+               <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                       data-key = <%= Rails.configuration.stripe[:publishable_key] %>
+                       data-description = "An article subscription"
+                       data-amount = <%= article['price'].to_i %> >
+               </script>
+             <% end %>
+            </div>
+           <% end %>
+         <% end %>
       </div>
    </div>
 </div>

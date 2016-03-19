@@ -27,7 +27,7 @@
           </div>
           <div class="card-action">
             <% if article.access?(current_user) %>
-              <%= link_to("LEER", article_path(article)) %> 
+              <%= link_to("LEER", article_path(article)) %>
             <% else %>
               <%= form_tag article_charges_path(article), :class => "form-pay-article" do %>
                 <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
@@ -45,9 +45,6 @@
     <%= will_paginate @articles, previous_label: "Anteriores", next_label: "Posteriores", inner_window: 2, outer_window: 0, :class => "flickr_pagination" %>
   </div>
   <div class="col s3">
-
     <%= render "layouts/aside" %>
-
   </div>
 </div>
-

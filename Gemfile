@@ -4,7 +4,7 @@ end
 
 source 'https://rubygems.org'
 
-
+gem 'redis'
 gem 'pry'
 gem 'devise'
 gem 'rspec-rails'
@@ -59,4 +59,3 @@ group :production do
  gem 'pg'
  gem 'rails_12factor'
 end
-

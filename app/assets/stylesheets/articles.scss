@@ -1,13 +1,40 @@
 // Place all the styles related to the news controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#tag_cloud {
 
+
+
+// .my-card-title{
+//     width: 75%;
+//     height:1.8rem;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     transition: color 0.3s;
+
+// }
+// .my-card-lead{
+//   $font-size: 14px;
+//   $line-height: 1.4;
+//   $lines-to-show: 3;
+//   display: -webkit-box;
+//   max-width: 400px;
+//   font-size: $font-size;
+//   line-height: $line-height;
+//   -webkit-line-clamp: $lines-to-show;
+//   -webkit-box-orient: vertical;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//  }
+
+
+
+
+#tag_cloud {
   line-height: 1.6em;
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
-
 }
 
 
