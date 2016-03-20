@@ -27,13 +27,10 @@
           <% if article.access?(current_user) %>
             <%= link_to("LEER", article_path(article)) %>
           <% else %>
-            <%= link_to("LEER", new_user_session_path) %> 
+            <%= link_to("LEER", new_user_session_path) %>
           <% end %>
         </div>
       </div>
     </div>
   <% end %>
   </div>
-  <%= will_paginate @articles, previous_label: "Anteriores", next_label: "Posteriores", inner_window: 2, outer_window: 0, :class => "flickr_pagination" %>
-
-

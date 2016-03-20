@@ -7,7 +7,6 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
-    binding.pry
 
     if params['user']['conditions'] == 'on'
       resource.writer = true
@@ -96,4 +95,3 @@ class RegistrationsController < Devise::RegistrationsController
     'devise.registrations'
   end
 end
-

@@ -1,5 +1,3 @@
-require 'will_paginate/array'
-
 class ArticlesController < ApplicationController
   before_filter :authenticate_writer, only: [:new, :edit, :update, :destroy]
   before_action :set_articles, only: [:show, :edit, :update, :destroy]
@@ -8,9 +6,9 @@ class ArticlesController < ApplicationController
     @user = current_user
 
     if params[:tag]
-      @articles = Article.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10)
+      @articles = Article.tagged_with(params[:tag]) #.paginate(page: params[:page], per_page: 10)
     else
-      @articles = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+      @articles = Article.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc) #.paginate(page: params[:page], per_page: 10)
     end
 
   end
@@ -70,7 +68,7 @@ class ArticlesController < ApplicationController
 
   def section
     @user = current_user
-    @articles = Category.find_by(id: params[:id]).articles.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @articles = Category.find_by(id: params[:id]).articles.where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc) #.paginate(page: params[:page], per_page: 10)
     render 'index'
   end
 
