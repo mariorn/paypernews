@@ -1,0 +1,49 @@
+
+<div class="container">
+  <div class="row center">
+    <div class="col s12">
+      <% if current_user %>
+
+      <div class="row">
+        <div class="col s12">
+          <a id="reports-generate" class="waves-effect waves-light btn">
+            <i class="material-icons right">replay</i>
+            Generar reports
+          </a>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col s12" id="js-readerArticlesWeek">
+          <canvas id="readerArticlesWeek" width="400" height="400"></canvas>
+          </div>
+          <div class="col s12" id="js-readerArticlesMonth">
+          <canvas id="readerArticlesMonth" width="400" height="400"></canvas>
+          </div>
+          <div class="col s12" id="js-readerArticlesYear">
+          <canvas id="readerArticlesYear" width="400" height="400"></canvas>
+          </div>
+        </div>
+
+        <div class="row">
+          <% if current_user.is_writer? %>
+          <div class="col s12" id="js-writerArticlesWeek">
+            <canvas id="writerArticlesWeek" width="400" height="400"></canvas>
+            </div>
+            <div class="col s12" id="js-writerArticlesMonth">
+            <canvas id="writerArticlesMonth" width="400" height="400"></canvas>
+            </div>
+            <div class="col s12" id="js-writerArticlesYear">
+            <canvas id="writerArticlesYear" width="400" height="400"></canvas>
+            </div>
+
+          <% end %>
+        </div>
+
+      <% else %>
+        <%= render "articles/index_by_defect" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

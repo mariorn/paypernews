@@ -21,7 +21,7 @@
       <% end %>
       <% if user_signed_in? %>
         <li>
-          <a class="btn-floating blue">
+          <a class="btn-floating blue" href= <%= reports_path(current_user) %>>
             <i class="material-icons">insert_chart</i>
           </a>
         </li>
@@ -64,7 +64,7 @@
    <div class="col s12">
       <div class="ranking-cards">
         <h5>Más vistas:</h5>
-        <% @redis_recents.each do |article| %>
+        <% @redis_views.each do |article| %>
 
           <% if Article.find(article['id'].to_i).access?(current_user) %>
             <p>

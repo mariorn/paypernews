@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   get '/section/:id' => 'articles#section'
   get '/search/:value' => 'articles#search'
   get '/tags/:tag' => 'articles#index', as: :tag
+  get '/increase_likes/:id' => 'articles#increase_score'
+  get '/reports/:user_id' => 'charges#reports', as: :reports
+  get '/read_by_week/:user_id/:days' => 'charges#articlesReader'
+  get '/write_by_week/:user_id/:days' => 'charges#articlesWriter'
+
 
 
   resources :articles do

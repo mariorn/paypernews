@@ -1,29 +1,34 @@
-<div class="container">
+
   <div class="row">
     <div class="col s9">
       <h4 class="center-align"> <%= @article.title %></h4>
       <h6> <%= @article.lead %></h6>
 
+      <% if @article.photo1? %>
+        <img src= <%= @article.photo1.url %> height="100%" width="100%">
+      <% end %>
+
       <p>
         <%= @article.body %>
       </p>
 
-      <p>
-        <strong>Visits:</strong>
-        <%= @article.visits %>
-      </p>
-
-      <p>
-        <strong>Score:</strong>
-        <%= @article.score %>
-      </p>
+      <% if @article.photo2? %>
+        <img src= <%= @article.photo2.url %> height="100%" width="100%">
+      <% end %>
 
 
-      <%= link_to 'Volver', articles_path %>
+      <a onclick="Materialize.toast('Me gusta!', 4000)" id="like-button"
+        class="waves-effect waves-light btn" js-data-article=<%= @article.id %> >
+        <i class="material-icons left">star</i>
+        Me gusta
+      </a>
+      <br><br>
+      <a class="waves-effect waves-light btn" href= <%= articles_path %> >Volver</a>
+
+
     </div>
 
     <div class="col s3">
       <%= render "layouts/aside" %>
     </div>
   </div>
-</div>

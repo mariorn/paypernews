@@ -83,8 +83,14 @@ class ArticlesController < ApplicationController
       @articles << @articles_all[index] if title.downcase.include?(params[:value].downcase)
     end
 
-    @articles = @articles.paginate(page: params[:page], per_page: 10)
+    # @articles = @articles.paginate(page: params[:page], per_page: 10)
+    @articles
     render 'index'
+  end
+
+  def increase_score
+    @article = Article.find_by(id: params[:id])
+    @article.increase_score
   end
 
 

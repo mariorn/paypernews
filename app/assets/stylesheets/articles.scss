@@ -28,8 +28,6 @@
 //  }
 
 
-
-
 #tag_cloud {
   line-height: 1.6em;
   .s { font-size: 0.8em; }
@@ -37,33 +35,116 @@
   .l { font-size: 1.8em; }
 }
 
-
-.flickr_pagination {
+.date {
+  background-color: #2980b9;
+  color: #fff;
+  min-height: 48px;
+  min-width: 48px;
   text-align: center;
-  padding: 0.3em;
-  cursor: default; }
-  .flickr_pagination a, .flickr_pagination span, .flickr_pagination em {
-    padding: 0.2em 0.5em; }
-  .flickr_pagination .disabled {
-    color: #aaaaaa; }
-  .flickr_pagination .current {
-    font-style: normal;
-    font-weight: bold;
-    color: #ff0084; }
-  .flickr_pagination a {
-    border: 1px solid #dddddd;
-    color: #0063dc;
-    text-decoration: none; }
-    .flickr_pagination a:hover, .flickr_pagination a:focus {
-      border-color: #003366;
-      background: #0063dc;
-      color: white; }
-  .flickr_pagination .page_info {
-    color: #aaaaaa;
-    padding-top: 0.8em; }
-  .flickr_pagination .previous_page, .flickr_pagination .next_page {
-    border-width: 2px; }
-  .flickr_pagination .previous_page {
-    margin-right: 1em; }
-  .flickr_pagination .next_page {
-    margin-left: 1em; }
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  float: right;
+  position: relative;
+  top: 4px;
+  left: -9px;
+}
+.date span {
+  display: block;
+  line-height: 24px;
+}
+.date .month {
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+.card-footer {
+  padding: 0 25px;
+  color: #20638f;
+  font-size: 1em;
+  line-height: 30px;
+  text-align: right;
+}
+.card-footer > div {
+  display: inline-block;
+  margin-left: 10px;
+
+
+
+  text-align: center;
+
+  text-transform: uppercase;
+  float: right;
+  position: relative;
+  top: -9px;
+  left: -20px;
+
+
+}
+.card-footer i {
+  color: #20638f;
+  margin-right: 5px;
+}
+
+
+.card-title{
+  line-height: 30px !important;
+}
+
+.card .card-content{
+    padding: 54px 14px !important;
+}
+
+.card-content p{
+  margin-top: 10px !important;
+}
+
+
+.card-action{
+  text-align: center;
+}
+
+
+.card {
+    position: relative;
+    height: 400px;
+    margin: 0.5rem 0 1rem 0;
+
+    transition: box-shadow .25s;
+    border-radius: 2px;
+}
+
+.card .card-action {
+    border-top: 1px solid rgba(160,160,160,0.2);
+    padding: 20px;
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100%;
+    height: 55px;
+}
+
+.card-writer {
+    margin-bottom: 12px;
+    text-align: left;
+    position: absolute !important;
+    width: 100%;
+    bottom: 20px;
+}
+
+
+.card-category .chip{
+  color: #20638f;
+  font-size: 14px;
+  background-color: white;
+  float: left;
+  margin-top: 8px;
+}
+
+.author .chip{
+  color: #20638f;
+  font-size: 14px;
+  background-color: white;
+  position: relative !important;
+  bottom: 9px !important;
+}

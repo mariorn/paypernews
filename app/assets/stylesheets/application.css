@@ -27,7 +27,6 @@
      margin-right: 10px;
 }
 #title{
-  background-color: #20638f;
   color: white;
   padding: 8px;
   margin-top: 0px;
@@ -97,22 +96,6 @@ nav ul a{
   background-color: white;
 }
 
-.card-title{
-  line-height: 30px !important;
-}
-
-.card-content p{
-  margin-top: 10px !important;
-}
-
-.card-writer{
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-.card-action{
-  text-align: center;
-}
 
 .input-field{
   top: 5px !important;
@@ -123,21 +106,21 @@ nav ul a{
   margin-top: 1rem;
   text-align: center;
   padding: 1rem;
-  
+
 }
 
 .fixed-categories a:hover{
-  color: #20638f; 
+  color: #20638f;
   border-bottom: 3px solid #20638f;
 }
 
 .fixed-categories a{
-  text-decoration: none; 
+  text-decoration: none;
   padding-bottom: 10px;
 }
 
 .fixed-categories a:visited{
-  color: #20638f; 
+  color: #20638f;
 }
 
 .my-border-bottom{
@@ -146,33 +129,6 @@ nav ul a{
 
 .container{
   width: 80% !important;
-}
-
-.card {
-    position: relative;
-    height: 314px;
-    margin: 0.5rem 0 1rem 0;
-    
-    transition: box-shadow .25s;
-    border-radius: 2px;
-}
-
-.card .card-action {
-    border-top: 1px solid rgba(160,160,160,0.2);
-    padding: 20px;
-    position: absolute !important;
-    bottom: 0 !important;
-    width: 100%;
-    height: 55px;
-}
-
-
-.card-writer {
-    margin-bottom: 5px;
-    text-align: center;
-    position: absolute !important;
-    width: 100%;
-    bottom: 55px;
 }
 
 .form-pay-article{
@@ -186,10 +142,11 @@ nav ul a{
 
 }
 
-
 .my-sign-buttons.right{
   padding: 5px;
   height: 100%;
 }
 
-
+.home{
+  margin-top: 6px;
+}

@@ -4,7 +4,6 @@
     <% if @article.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@article.errors.count, "error") %> prohibited this news from being saved:</h2>
-
         <ul>
         <% @article.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -20,14 +19,17 @@
         <%= f.label :title, "Titular del artículo" %><br>
         <%= f.text_field :title %>
       </div>
+
       <div class="field">
         <%= f.label :lead, "Entradilla del artículo" %><br>
         <%= f.text_area :lead %>
       </div>
+
       <div class="field">
         <%= f.label :body, "Cuerpo del artículo" %><br>
         <%= f.text_area :body %>
       </div>
+
       <div class="field">
         <%= f.label :tag_list, "Tags separados por comas (fun, concert,..)" %><br>
         <%= f.text_field :tag_list %>
@@ -40,20 +42,29 @@
 
 
       <div class="field">
-        <%= f.label :price %><br>
-        <%= f.text_field :price %>
+        <%= f.label :"Precio mínimo 10 céntimos - Precio máximo 1 €" %><br>
 
         <p class="range-field">
           <input type="range" name="article[price]" id="price-article" min="10" max="100" />
         </p>
       </div>
 
+      <div class="field">
+        <%= f.label :"Foto Opcional 1"  %><br />
+        <%= f.file_field :photo1 %>
+      </div>
 
       <div class="field">
-        <%= f.label :category %><br>
+        <%= f.label :"Foto Opcional 2" %><br />
+        <%= f.file_field :photo2 %>
+      </div>
+
+
+      <div class="field">
+        <%= f.label :Sección %><br>
         <div class="input-field col s12">
           <select name="category" class="browser-default">
-            <option id="select-form" value="">Category</option>
+            <option id="select-form" value="">Sección</option>
 
             <% Category.all.each_with_index do |cat, index| %>
               <option  value= <%= cat.name %> ><%= cat.name %></option>
@@ -63,7 +74,7 @@
           <br>
         </div>
       </div>
-      
+
 
 
       <div class="actions">

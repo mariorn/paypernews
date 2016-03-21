@@ -6,25 +6,51 @@
 
       <div class="col s6">
         <div class="card">
+          <div class="card-category">
+            <% if article.categories.first %>
+              <div class="chip">
+                <%= article.categories.first.name %>
+              </div>
+            <% end %>
+
+            <div class="date">
+              <span class="day"><%= article.created_at.to_time.day %></span>
+              <span class="month"> <%= article.created_at.to_time.strftime("%^B")[0..2] %> </span>
+            </div>
+
+          </div>
           <div class="card-content">
             <span class="my-card-title card-title"><%= article.title %></span>
             <p class="my-card-lead"><%= article.lead %></p>
           </div>
           <div class="card-writer">
-
-            <% if article.tag_list.length > 0 %>
-              <p>
-                #<%= raw article.tag_list.map { |t| link_to t, tag_path(t)}.join(' #') %>
-              </p>
-            <% end %>
-
-            <div class="chip">
-              <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
-              <%= User.find(article.user_id).name %>
-              <%= article.created_at.strftime("- %d/%m/%Y - %T") %>
+            <div class="row center">
+              <div class="col s12">
+                <% if article.tag_list.length > 0 %>
+                  <p>
+                    #<%= raw article.tag_list.map { |t| link_to t, tag_path(t)}.join(' #') %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s6 author center">
+                <div class="chip">
+                  <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
+                  <%= User.find(article.user_id).name %>
+                </div>
+              </div>
+              <div class="col s6">
+                <div class="card-footer">
+                  <div class="views"><i class="ion-eye"></i> <%= article.visits %> </div>
+                  <div class="love"><i class="ion-heart"></i> <%= article.score.to_i %> </div>
+                </div>
+              </div>
             </div>
 
-          </div>
+        </div>
+
+
           <div class="card-action">
             <% if article.access?(current_user) %>
               <%= link_to("LEER", article_path(article)) %>
@@ -37,7 +63,9 @@
                 </script>
               <% end %>
             <% end %>
+
           </div>
+
         </div>
       </div>
       <% end %>
