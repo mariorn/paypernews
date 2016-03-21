@@ -1,1 +1,1 @@
-$redis = Redis.new(:host => 'localhost', :port => 6379)
+$redis = Redis.new(:host => 'https://obscure-scrubland-21341.herokuapp.com/', :port => 6379)
