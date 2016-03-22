@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   get '/search/:value' => 'articles#search'
   get '/tags/:tag' => 'articles#index', as: :tag
   get '/increase_likes/:id' => 'articles#increase_score'
+  get '/decrease_likes/:id' => 'articles#decrease_score'
   get '/reports/:user_id' => 'charges#reports', as: :reports
   get '/read_by_week/:user_id/:days' => 'charges#articlesReader'
   get '/write_by_week/:user_id/:days' => 'charges#articlesWriter'
-
-
+  get '/read_after/:id' => 'articles#get_title_article'
 
   resources :articles do
     resource :charges

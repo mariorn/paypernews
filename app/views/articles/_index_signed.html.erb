@@ -53,7 +53,10 @@
 
           <div class="card-action">
             <% if article.access?(current_user) %>
-              <%= link_to("LEER", article_path(article)) %>
+              <%= link_to("LEER", article_path(article), :class => "check-later-read") %>
+              <a href="#" class="button-read-after" value=<%= article.id %>
+                >LEER DESPUÉS</a>
+
             <% else %>
               <%= form_tag article_charges_path(article), :class => "form-pay-article" do %>
                 <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"

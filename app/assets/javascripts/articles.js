@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+var uri = "http://localhost:3000/";
 
 $(function() {
     $(".browser-default").on('change', function(event) {
@@ -40,37 +41,103 @@ function controlEnter(e){
   }
 }
 
-var increaseScore = function(e){
-  console.log(e);
+var increaseScore = function(value){
 
+  var uri_array = window.location.pathname.split("/");
+  var article_id = uri_array[ uri_array.length - 1];
+
+  if(value > 0){
+    $.ajax({
+      url: uri + "increase_likes/" + article_id,
+      success: function (response){
+        $('#like-button').css('display','none');
+        $('#no-like-button').css('display','block');
+      }
+    });//ajax
+
+  }else{
+      $.ajax({
+        url: uri + "decrease_likes/" + article_id,
+        success: function (response){
+          $('#like-button').css('display','block');
+          $('#no-like-button').css('display','none');
+        }
+      });//ajax
+    }
+}
+
+
+var existIdReadLater = function(article_id){
+  var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
+
+  for (var i = 0; i < pendings.length; i++) {
+    if(pendings[i].id == article_id){
+      return true;
+    }
+  }
+  return false;
+};
+
+
+var addArticle = function(e){
   e.preventDefault();
-
-  var uri = window.location.pathname.split("/");
-
-  var article_id = uri[ uri.length - 1];
-  console.log(article_id);
+  var article_id = e.currentTarget.attributes.value.value;
 
   $.ajax({
-    url: "http://localhost:3000/increase_likes/" + article_id,
+    url: uri + "read_after/" + article_id,
     success: function (response){
 
-      var dataResponse = response;
-      //Cambiar texto del botón y clase para que en caso de pulsar otra vez reste
+      var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
 
-
+      if(!existIdReadLater(article_id)){
+        pendings.push({id: response.id, title: response.title});
+        window.localStorage.setItem( "pendings" , JSON.stringify(pendings));
+      }
+      renderArticlesReadLater();
     }
   });//ajax
+};
 
 
-}
+var renderArticlesReadLater = function(e){
+  var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
+  var parentPendings = $('#pending-read');
+  $('#pending-read p').remove();
+
+  for (var i = 0; i < pendings.length; i++) {
+    var newArticleLater = $("<p><a class=\"check-later-read\" href=\"/articles/"+ pendings[i].id + "\">"+pendings[i].title+"</a></p>");
+    $("#pending-read").append(newArticleLater);
+  }
+};
+
+var removeArticle = function(e){
+  var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
+  var parentPendings = $('#pending-read');
+  $('#pending-read p').remove();
+
+  var article_id = e.currentTarget.href.split("/");
+  article_id = article_id[article_id.length-1];
+  var pendings_def = [];
+  for (var i = 0; i < pendings.length; i++) {
+    if(pendings[i].id != article_id){
+      pendings_def.push(pendings[i])
+    }
+  }
+  window.localStorage.setItem( "pendings" , JSON.stringify(pendings_def));
+  renderArticlesReadLater();
+};
+
 
 
 $(document).on('ready', function(){
 
   filterCards();
+  renderArticlesReadLater();
   $("#search").keyup(controlEnter);
   $('#datetimepicker').datetimepicker();
-  $('#like-button').on('click', increaseScore)
-
+  $('#like-button').on('click', function(){increaseScore(1)});
+  $('#no-like-button').on('click', function(){increaseScore(-1)});
+  $('.button-read-after').on('click', addArticle);
+  $('.check-later-read').on('click', removeArticle);
 
 });

@@ -91,6 +91,27 @@ class ArticlesController < ApplicationController
   def increase_score
     @article = Article.find_by(id: params[:id])
     @article.increase_score
+
+    if @article.save
+      render status: 200, json: @article.to_json
+    else
+      render status: 500, json: @article.to_json
+    end
+  end
+
+  def decrease_score
+    @article = Article.find_by(id: params[:id])
+    @article.decrease_score
+    if @article.save
+      render status: 200, json: @article.to_json
+    else
+      render status: 500, json: @article.to_json
+    end
+  end
+
+  def get_title_article
+    @article = Article.find_by(id: params[:id])
+    render status: 200, json: @article.to_json
   end
 
 

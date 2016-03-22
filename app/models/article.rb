@@ -27,8 +27,12 @@ class Article < ActiveRecord::Base
 
   def increase_score
     self.score += 1
-    self.save
   end
+
+  def decrease_score
+    self.score -= 1
+  end
+
 
   def owner?(user)
     self.user_id == user.id
