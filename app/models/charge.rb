@@ -1,18 +1,17 @@
 class Charge < ActiveRecord::Base
 
-  def process_payment
-    customer = Stripe::Customer.create email: current_user.email,
-                                       card: card_token
-
-    Stripe::Charge.create customer: customer.id,
-                          amount: @article.price,
-                          description: "Compra de artículo #{@article.id} de NewsPay",
-                          currency: 'eur'
-  end
+  # def process_payment
+  #   customer = Stripe::Customer.create email: current_user.email,
+  #                                      card: card_token
+  #
+  #   Stripe::Charge.create customer: customer.id,
+  #                         amount: @article.price,
+  #                         description: "Compra de artículo #{@article.id} de NewsPay",
+  #                         currency: 'eur'
+  # end
 
 
   def self.totalArticlesRead(user, days)
-
     from = (Date.today - days).to_time
     to = Date.today.to_time
 
@@ -38,12 +37,10 @@ class Charge < ActiveRecord::Base
 
 
   def self.totalArticlesWrite(user, days)
-
     from = (Date.today - days).to_time
     to = Date.today.to_time
 
     @articles = Article.where(created_at: from..to).where(user_id: user.id)
-
     @transactions_by_week = {"Monday": {total: 0, total_price: 0},
                              "Tuesday": {total: 0, total_price: 0},
                              "Wednesday": {total: 0, total_price: 0},
@@ -62,8 +59,5 @@ class Charge < ActiveRecord::Base
 
     @transactions_by_week
   end
-
-
-
 
 end

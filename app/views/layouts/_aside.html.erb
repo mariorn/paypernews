@@ -1,149 +1,20 @@
 
 <div class="row">
-  <div class="fixed-action-btn horizontal click-to-toggle" style="top: 10px; right: 24px;">
-    <a class="btn-floating btn-large red">
-      <i class="large mdi-navigation-menu"></i>
-    </a>
-    <ul>
-      <% if current_user.is_admin? %>
-        <li>
-          <a class="btn-floating yellow darken-1" href= <%= admin_root_path %> >
-            <i class="material-icons">build</i>
-          </a>
-        </li>
-      <% end %>
-      <% if current_user.is_writer? %>
-      <li>
-        <a class="btn-floating green" href= <%= new_user_article_path(current_user) %>>
-          <i class="material-icons">mode_edit</i>
-        </a>
-      </li>
-      <% end %>
-      <% if user_signed_in? %>
-        <li>
-          <a class="btn-floating blue" href= <%= reports_path(current_user) %>>
-            <i class="material-icons">insert_chart</i>
-          </a>
-        </li>
-        <li>
-          <a class="btn-floating teal" href= <%= edit_user_path(current_user) %>>
-            <i class="material-icons">perm_identity</i>
-          </a>
-        </li>
-        <li>
-          <a data-method="delete" class="btn-floating black"
-            href= <%= destroy_user_session_path %> >
-            <i class="material-icons">power_settings_new</i>
-          </a>
-        </li>
-      <% else %>
-        <li>
-          <a class="btn-floating green" href= <%= new_user_registration_path %> >
-            <i class="material-icons">power_settings_new</i>
-          </a>
-        </li>
-        <li>
-          <a class="btn-floating purple" href= <%= new_user_session_path %> >
-            <i class="material-icons">power_settings_new</i>
-          </a>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render "layouts/red_principal_btn" %>
   <% get_redis %>
   <div class="col s12">
-     <div class="ranking-cards">
-         <h5>Pendientes:</h5>
-         <div id="pending-read">
-
-         </div>
-     </div>
+    <%= render "layouts/article_pendings" %>
   </div>
    <div class="col s12">
-      <div class="ranking-cards">
-          <h5>Tags actuales:</h5>
-          <div id="tag_cloud">
-            <% tag_cloud Article.tag_counts, %w[s m l] do |tag, css_class| %>
-              <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-              <% end %>
-          </div>
-      </div>
+     <%= render "layouts/cloud_tag" %>
    </div>
    <div class="col s12">
-      <div class="ranking-cards">
-        <h5>Más vistas:</h5>
-        <% @redis_views.each do |article| %>
-
-          <% if Article.find(article['id'].to_i).access?(current_user) %>
-            <p>
-              <%= link_to(article['title'], article_path(article['id'].to_i)) %>
-            </p>
-          <% else %>
-            <p>
-              <%= article['title'] %>
-            </p>
-            <div class="center-align">
-            <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
-              <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                      data-key = <%= Rails.configuration.stripe[:publishable_key] %>
-                      data-description = "An article subscription"
-                      data-amount = <%= article['price'].to_i %> >
-              </script>
-            <% end %>
-            </div>
-          <% end %>
-
-        <% end %>
-      </div>
+     <%= render "layouts/ranking_recents" %>
    </div>
    <div class="col s12">
-      <div class="ranking-cards">
-         <h5>Mejor puntuadas:</h5>
-         <% @redis_score.each do |article| %>
-           <% if Article.find(article['id'].to_i).access?(current_user) %>
-             <p>
-               <%= link_to(article['title'], article_path(article['id'].to_i)) %>
-             </p>
-           <% else %>
-             <p>
-               <%= article['title'] %>
-             </p>
-             <div class="center-align">
-             <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
-               <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                       data-key = <%= Rails.configuration.stripe[:publishable_key] %>
-                       data-description = "An article subscription"
-                       data-amount = <%= article['price'].to_i %> >
-               </script>
-             <% end %>
-           </div>
-           <% end %>
-         <% end %>
-      </div>
+     <%= render "layouts/ranking_visit" %>
    </div>
    <div class="col s12">
-      <div class="ranking-cards">
-         <h5>Más recientes:</h5>
-         <% @redis_recents.each do |article| %>
-           <% if Article.find(article['id'].to_i).access?(current_user) %>
-             <p>
-               <%= link_to(article['title'], article_path(article['id'].to_i)) %>
-             </p>
-           <% else %>
-             <p>
-               <%= article['title'] %>
-             </p>
-            <div class="center-align">
-             <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
-               <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                       data-key = <%= Rails.configuration.stripe[:publishable_key] %>
-                       data-description = "An article subscription"
-                       data-amount = <%= article['price'].to_i %> >
-               </script>
-             <% end %>
-            </div>
-           <% end %>
-         <% end %>
-      </div>
+     <%= render "layouts/ranking_fav" %>
    </div>
 </div>

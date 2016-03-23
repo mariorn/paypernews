@@ -1,21 +1,5 @@
 <div class="row">
   <div class="col 12">
-
-    <div class="row">
-      <% Category.all.each do |cat| %>
-
-        <div class="card col s4">
-
-          <figure class="card">
-            <figcaption>
-              <a class="category-item" href=<%= "/section/#{cat.id}" %> > <%= cat.name %> </a> 
-            </figcaption>
-          </figure>
-
-        </div>
-      <% end %>
-    </div>
-
+    <%= render "site/categories" %>
   </div>
-
 </div>

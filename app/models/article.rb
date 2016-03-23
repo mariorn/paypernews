@@ -15,7 +15,6 @@ class Article < ActiveRecord::Base
 
   acts_as_taggable
 
-
   def access?(user)
     self.users.include?(user)
   end
@@ -32,7 +31,6 @@ class Article < ActiveRecord::Base
   def decrease_score
     self.score -= 1
   end
-
 
   def owner?(user)
     self.user_id == user.id

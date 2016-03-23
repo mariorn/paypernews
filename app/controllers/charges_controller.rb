@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
   def create
     #Amount in cents
     @article = Article.find_by(id: params[:article_id])
-    @amount = @article.price
+    @amount = 50 #@article.price
 
     customer = Stripe::Customer.create(
       :email => current_user.email,
@@ -16,8 +16,7 @@ class ChargesController < ApplicationController
 
     @charge = Stripe::Charge.create(
       :customer => customer.id,
-      # :amount   => @amount.to_i,
-      :amount   => 50,
+      :amount   => @amount.to_i,
       :description => "Compra artículo #{@article.id} de NewsPay",
       :currency => 'eur'
     )

@@ -12,7 +12,6 @@
       </div>
     <% end %>
 
-
     <%= form_for [@user, @article] do |f| %>
 
       <div class="field">
@@ -40,10 +39,8 @@
         <input id="datetimepicker" name="datetimepicker" type="text" >
       </div>
 
-
       <div class="field">
         <%= f.label :"Precio mínimo 10 céntimos - Precio máximo 1 €" %><br>
-
         <p class="range-field">
           <input type="range" name="article[price]" id="price-article" min="10" max="100" />
         </p>
@@ -59,7 +56,6 @@
         <%= f.file_field :photo2 %>
       </div>
 
-
       <div class="field">
         <%= f.label :Sección %><br>
         <div class="input-field col s12">
@@ -69,20 +65,16 @@
             <% Category.all.each_with_index do |cat, index| %>
               <option  value= <%= cat.name %> ><%= cat.name %></option>
             <% end %>
-
           </select>
           <br>
         </div>
       </div>
 
-
-
       <div class="actions">
         <%= f.submit %>
       </div>
     <% end %>
-  <br>
-  <%= link_to("Back", articles_path) %>
-
+    <br>
+    <%= link_to("Back", articles_path) %>
   </div>
 </div>

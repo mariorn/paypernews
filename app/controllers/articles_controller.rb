@@ -40,7 +40,6 @@ class ArticlesController < ApplicationController
     @article.user_id = current_user.id
     @article.publish_at = params[:datetimepicker].to_datetime
     @category = Category.find_by(name: params['category'])
-
     @article.categories << @category
 
     if @article.save
@@ -123,7 +122,8 @@ class ArticlesController < ApplicationController
     end
 
     def articles_params
-      params.require(:article).permit(:title, :lead, :body, :price, :photo1, :photo2, :publish_at, :tag_list)
+      params.require(:article).permit(:title, :lead, :body, :price, :photo1,
+                                      :photo2, :publish_at, :tag_list)
     end
 
     def authenticate_writer

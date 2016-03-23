@@ -1,0 +1,19 @@
+<div class="row buttons-article">
+  <div class="col s4">
+    <a class="waves-effect waves-light btn" href= <%= articles_path %> >Volver</a>
+  </div>
+  <div class="col s4">
+    <a onclick="Materialize.toast('Me gusta!', 4000)" id="like-button"
+      class="waves-effect waves-light btn" js-data-article=<%= @article.id %> >
+      <i class="material-icons left">thumb_up</i>
+      Me gusta
+    </a>
+  </div>
+  <div class="col s4">
+    <a onclick="Materialize.toast('No me gusta!', 4000)" id="no-like-button"
+      class="waves-effect waves-light btn" js-data-article=<%= @article.id %> >
+      <i class="material-icons left">thumb_down</i>
+      No me gusta
+    </a>
+  </div>
+</div>

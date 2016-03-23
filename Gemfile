@@ -8,13 +8,11 @@ gem 'pry'
 
 gem 'redis'
 gem 'devise'
-gem 'rspec-rails'
 gem 'figaro'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem "paperclip", "~> 4.3"
 gem "administrate", "~> 0.1.4"
 gem 'acts-as-taggable-on', '~> 3.4'
-#gem 'will_paginate', '~> 3.0.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -44,6 +42,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do

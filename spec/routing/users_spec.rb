@@ -1,62 +1,39 @@
 require 'rails_helper'
 
-RSpec.describe "Movies", type: :request do
+RSpec.describe "Users", type: :routing do
 
-  describe "GET /movies" do
-    before { @movie = Movie.create title: 'Frames from the Edge' }
-
-    it "returns a list of movies" do
-      get movies_path(format: :json)
-      data = JSON.parse(response.body)
-
-      expect(response).to have_http_status(200)
-      expect(data.length).to eq(1)
-    end
+  before(:each) do
+      @user = User.create({
+            name: 'Test',
+            email: 'test@testing.com',
+            password: '12345678',
+            password_confirmation: '12345678'
+          })
   end
 
-  describe "GET /movies/:id", type: :request do
-    before { @movie = Movie.create title: 'Frames from the Edge' }
 
-    it "returns a proper movie" do
-      get movie_path(@movie, format: :json)
-      data = JSON.parse(response.body)
-
-      expect(response).to have_http_status(200)
-      expect(data['title']).to eq(@movie.title)
-    end
+  it 'routes /users to the users controller' do
+    expect(get(users_path)).to route_to(:controller => 'users', :action => 'index')
   end
 
-  describe "DELETE /movies/:id", type: :request do
-    before do
-      @movie = Movie.create title: 'Frames from the Edge'
-      @count = Movie.count
-    end
-
-    it "deletes a movie" do
-      delete movie_path(@movie, format: :json)
-
-      expect(response).to have_http_status(204)
-      expect(Movie.count).to eq(@count - 1)
-    end
+  it 'routes /users to the users controller' do
+    expect(post(user_registration_path)).to route_to(:controller => 'registrations', :action => 'create')
   end
 
-  describe "PUT /movies/:id", type: :request do
-    before { @movie = Movie.create title: 'Frames from the Edge' }
-
-    it "updates a movie" do
-      put movie_path(@movie, format: :json), movie: {title: 'Hair'}
-
-      expect(response).to have_http_status(200)
-      expect(@movie.reload.title).to eq('Hair')
-    end
+  it 'routes /users/:id/edit to the users controller' do
+    expect(get(edit_user_path(@user.id))).to route_to(:controller => 'users', :action => 'edit', :id => "#{@user.id}")
   end
 
-  describe "POST /movies", type: :request do
-    it "creates a proper movie" do
-      post movies_path(format: :json), movie: {title: 'Hair'}
-
-      expect(response).to have_http_status(201)
-      expect(Movie.last.title).to eq('Hair')
-    end
+  it 'routes /users/:id to the users controller' do
+    expect(patch(user_path(@user))).to route_to(:controller => 'users', :action => 'update', :id => "#{@user.id}")
   end
+
+  it 'routes /users/:id to the users controller' do
+    expect(put(user_path(@user))).to route_to(:controller => 'users', :action => 'update', :id => "#{@user.id}")
+  end
+
+  it 'routes /users/:id to the users controller' do
+    expect(delete(user_path(@user))).to route_to(:controller => 'users', :action => 'destroy', :id => "#{@user.id}")
+  end
+
 end

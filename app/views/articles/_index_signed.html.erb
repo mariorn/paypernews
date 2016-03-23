@@ -3,74 +3,9 @@
   <div class="col s9">
     <div class="row">
       <% @articles.each do |article| %>
-
-      <div class="col s6">
-        <div class="card">
-          <div class="card-category">
-            <% if article.categories.first %>
-              <div class="chip">
-                <%= article.categories.first.name %>
-              </div>
-            <% end %>
-
-            <div class="date">
-              <span class="day"><%= article.created_at.to_time.day %></span>
-              <span class="month"> <%= article.created_at.to_time.strftime("%^B")[0..2] %> </span>
-            </div>
-
-          </div>
-          <div class="card-content">
-            <span class="my-card-title card-title"><%= article.title %></span>
-            <p class="my-card-lead"><%= article.lead %></p>
-          </div>
-          <div class="card-writer">
-            <div class="row center">
-              <div class="col s12">
-                <% if article.tag_list.length > 0 %>
-                  <p>
-                    #<%= raw article.tag_list.map { |t| link_to t, tag_path(t)}.join(' #') %>
-                  </p>
-                <% end %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s6 author center">
-                <div class="chip">
-                  <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
-                  <%= User.find(article.user_id).name %>
-                </div>
-              </div>
-              <div class="col s6">
-                <div class="card-footer">
-                  <div class="views"><i class="ion-eye"></i> <%= article.visits %> </div>
-                  <div class="love"><i class="ion-heart"></i> <%= article.score.to_i %> </div>
-                </div>
-              </div>
-            </div>
-
+        <div class="col s6">
+          <%= render partial: "articles/card", object: article, as: 'article' %>
         </div>
-
-
-          <div class="card-action">
-            <% if article.access?(current_user) %>
-              <%= link_to("LEER", article_path(article), :class => "check-later-read") %>
-              <a href="#" class="button-read-after" value=<%= article.id %>
-                >LEER DESPUÉS</a>
-
-            <% else %>
-              <%= form_tag article_charges_path(article), :class => "form-pay-article" do %>
-                <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                        data-key = <%= Rails.configuration.stripe[:publishable_key] %>
-                        data-description = "An article subscription"
-                        data-amount = <%= article.price %> >
-                </script>
-              <% end %>
-            <% end %>
-
-          </div>
-
-        </div>
-      </div>
       <% end %>
     </div>
   </div>

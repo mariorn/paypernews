@@ -1,45 +1,42 @@
 require 'rails_helper'
 
-RSpec.describe Hotel, type: :model do
-  context 'two hotels with the same name' do
+RSpec.describe User, type: :model do
+  context 'two users with the same email' do
     before (:each) do
-      @hotel1 = Hotel.create({ name: 'test-hotel', 
-                               address: 'Calle de Claudio Coello, 139, 28006 Madrid, Madrid, España',
-                               latlong: 'POINT(40.4355254 -3.6855281000000056)',
-                               price: 10,
-                               website: 'http://www.website.com/' })
+      @user1 = User.create({ name: 'test',
+                             email: 'test@test.com',
+                             password: '12345678',
+                             password_confirmation: '12345678'
+                              })
 
-      @hotel2 = Hotel.create({ name: 'test-hotel', 
-                               address: 'Calle de Claudio Coello, 139, 28006 Madrid, Madrid, España',
-                               latlong: 'POINT(40.4355254 -3.6855281000000056)',
-                               price: 10,
-                               website: 'http://www.website.com/' })
+      @user2 = User.create({ name: 'test',
+                               email: 'test@test.com',
+                               password: '12345678',
+                               password_confirmation: '12345678' })
     end
 
-    it 'it should save just one of the hotels' do
-      hotels = Hotel.all
-      expect(hotels.length).to be(1)
+    it 'it should save just one of the users' do
+      users = User.count
+      expect(users).to be(1)
     end
   end
 
-  context 'two hotels with different name' do
+  context 'two users with different email' do
     before (:each) do
-      @hotel1 = Hotel.create({ name: 'test-hotel', 
-                               address: 'Calle de Claudio Coello, 139, 28006 Madrid, Madrid, España',
-                               latlong: 'POINT(40.4355254 -3.6855281000000056)',
-                               price: 10,
-                               website: 'http://www.website.com/' })
+      @user1 = User.create({ name: 'test',
+                             email: 'test1@test.com',
+                             password: '12345678',
+                             password_confirmation: '12345678'  })
 
-      @hotel2 = Hotel.create({ name: 'test-hotel2', 
-                               address: 'Calle de Claudio Coello, 139, 28006 Madrid, Madrid, España',
-                               latlong: 'POINT(40.4355254 -3.6855281000000056)',
-                               price: 10,
-                               website: 'http://www.website.com/' })
+      @user2 = User.create({ name: 'test',
+                               email: 'test2@test.com',
+                               password: '12345678',
+                               password_confirmation: '12345678' })
     end
 
-    it 'it should save just one of the hotels' do
-      hotels = Hotel.all
-      expect(hotels.length).to be(2)
+    it 'it should save both of them' do
+      users = User.count
+      expect(users).to be(2)
     end
   end
 end
