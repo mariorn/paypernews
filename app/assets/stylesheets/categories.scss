@@ -9,3 +9,123 @@
  background-image: -o-radial-gradient(top, circle cover, #20638f 0%, #195175 90%);
  background-image: radial-gradient(top, circle cover, #20638f 0%, #195175 90%);
 }
+
+
+.categories-nav{
+  background-color: white;
+}
+
+
+.category-item{
+  padding: 0 1rem;
+  font-size: 12px;
+
+
+
+
+}
+
+.principal-nav a:visited{
+  color: white !important;
+}
+.categories-nav a:visited{
+  color: #20638f !important;
+}
+nav ul a{
+  padding: 23px 12px !important;
+}
+
+.tabs .tab a {
+  color: #20638f !important;
+}
+
+.tabs .indicator {
+  color: #20638f !important;
+}
+
+.category-item:hover{
+  background-color: white;
+}
+
+
+.input-field{
+  top: 5px !important;
+}
+
+
+.fixed-categories{
+  margin-top: 1rem;
+  text-align: center;
+  padding: 1rem;
+
+}
+
+.fixed-categories a:hover{
+  color: #20638f;
+  border-bottom: 3px solid #20638f;
+}
+
+.fixed-categories a{
+  text-decoration: none;
+  padding-bottom: 10px;
+}
+
+.fixed-categories a:visited{
+  color: #20638f;
+}
+
+.my-border-bottom{
+  border-bottom: 3px solid #20638f;
+}
+
+.container{
+  width: 80% !important;
+}
+
+.form-pay-article{
+  position: relative;
+  bottom: 1rem;
+}
+
+.my-logo.brand-logo{
+  padding: 5px;
+  height: 100%;
+
+}
+
+.my-sign-buttons.right{
+  padding: 5px;
+  height: 100%;
+}
+
+.home{
+  margin-top: 6px;
+}
+
+
+.category-card{
+  margin-bottom: 10px;
+}
+
+.category-image{
+
+}
+
+.category-action{
+  text-align: center;
+  color: #fff !important;
+  font-size: 20px;
+  margin-bottom: 20px;
+  // border-style: solid;
+  // border-color: #1C5A82;
+  // border-width: 1px;
+  // border-radius: 10px;
+  padding: 7px;
+}
+
+.category-image img{
+  width: 100%;
+  height: 225px;
+  border-radius: 10px;
+  background-size: 100% 100%;
+}

@@ -11,12 +11,12 @@ class Charge < ActiveRecord::Base
   # end
 
 
-  def self.totalArticlesRead(user, days)
-    from = (Date.today - days).to_time
-    to = Date.today.to_time
+  def self.totalArticlesBuy(user, days)
+    from = (Date.today - days + 1).to_time
+    to = (Date.today + 1).to_time
 
     @transactions = user.transactions.where(created_at: from..to)
-    @transactions_by_week ={"Monday": {total: 0, total_price: 0},
+    @transactions_by_days ={"Monday": {total: 0, total_price: 0},
                            "Tuesday": {total: 0, total_price: 0},
                            "Wednesday": {total: 0, total_price: 0},
                            "Thursday": {total: 0, total_price: 0},
@@ -28,20 +28,21 @@ class Charge < ActiveRecord::Base
     @transactions.each do |transaction|
       price = Article.find(transaction.article_id).price
       day = transaction.created_at.to_time.strftime("%A")
-      @transactions_by_week[day.to_sym][:total] += 1
-      @transactions_by_week[day.to_sym][:total_price] += price
+      @transactions_by_days[day.to_sym][:total] += 1
+      @transactions_by_days[day.to_sym][:total_price] += price
     end
 
-    @transactions_by_week
+    @transactions_by_days
   end
 
 
-  def self.totalArticlesWrite(user, days)
-    from = (Date.today - days).to_time
-    to = Date.today.to_time
+  def self.totalArticlesSold(user, days)
+    from = (Date.today - days + 1).to_time
+    to = (Date.today + 1).to_time
 
-    @articles = Article.where(created_at: from..to).where(user_id: user.id)
-    @transactions_by_week = {"Monday": {total: 0, total_price: 0},
+    @transactions = Transaction.where(created_at: from..to)
+    @articles = Article.where(user_id: user.id).pluck('id')
+    @transactions_by_days = {"Monday": {total: 0, total_price: 0},
                              "Tuesday": {total: 0, total_price: 0},
                              "Wednesday": {total: 0, total_price: 0},
                              "Thursday": {total: 0, total_price: 0},
@@ -50,14 +51,16 @@ class Charge < ActiveRecord::Base
                              "Sunday": {total: 0, total_price: 0}
                            }
 
-    @articles.each do |article|
-      day = article.created_at.to_time.strftime("%A")
-      @transactions_by_week[day.to_sym][:total] += 1
-      @transactions_by_week[day.to_sym][:total_price] +=
-        Article.find(article.id).transactions.count * article.price
-    end
+     @transactions.each do |transaction|
+       if(@articles.include?(transaction.article_id)) 
+         price = Article.find(transaction.article_id).price
+         day = transaction.created_at.to_time.strftime("%A")
+         @transactions_by_days[day.to_sym][:total] += 1
+         @transactions_by_days[day.to_sym][:total_price] += price
+       end
+     end
 
-    @transactions_by_week
+    @transactions_by_days
   end
 
 end

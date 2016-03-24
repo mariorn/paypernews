@@ -44,4 +44,12 @@ class Article < ActiveRecord::Base
     self.photo2.url == "/images/original/missing.png" ? false : true
   end
 
+  def get_title_limit
+    self.title.length > 70 ? self.title[0..70] + "..." : self.title
+  end
+
+  def get_lead_limit
+    self.lead.length > 260 ? self.lead[0..260] + "..." : self.lead
+  end
+
 end

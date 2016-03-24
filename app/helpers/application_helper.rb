@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def get_categories
-    Category.all.limit(9)
+    Category.all.order(id: :asc).limit(9)
   end
 
   def get_redis
@@ -9,7 +9,5 @@ module ApplicationHelper
     @redis_score = JSON.parse($redis.get('rankingscore'))
     @redis_views = JSON.parse($redis.get('rankingviews'))
   end
-
-
 
 end

@@ -20,20 +20,6 @@ $(".hover").mouseleave(
 );
 
 
-var filterCards = function(){
-  var myTitleCards = $('.my-card-title');
-  var myLeadCards = $('.my-card-lead');
-
-  for (var i = 0; i < myTitleCards.length; ++i) {
-    if(myTitleCards[i].innerText.length > 70){
-      myTitleCards[i].innerText = myTitleCards[i].innerText.substring(0,70) + '...';
-    }
-    if(myLeadCards[i].innerText.length > 300 ){
-      myLeadCards[i].innerText = myLeadCards[i].innerText.substring(0,300) + '...';
-    }
-  }
-}
-
 function controlEnter(e){
   if(e.which == 13){
     e.preventDefault();
@@ -72,10 +58,10 @@ var existIdReadLater = function(article_id){
 
   for (var i = 0; i < pendings.length; i++) {
     if(pendings[i].id == article_id){
-      return true;
+      return i;
     }
   }
-  return false;
+  return -1;
 };
 
 
@@ -88,9 +74,13 @@ var addArticle = function(e){
     success: function (response){
 
       var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
-
-      if(!existIdReadLater(article_id)){
+      var position = existIdReadLater(article_id);
+      if(position < 0){
         pendings.push({id: response.id, title: response.title});
+        window.localStorage.setItem( "pendings" , JSON.stringify(pendings));
+      }else{
+
+        pendings.splice(position , 1)
         window.localStorage.setItem( "pendings" , JSON.stringify(pendings));
       }
       renderArticlesReadLater();
@@ -131,7 +121,6 @@ var removeArticle = function(e){
 
 $(document).on('ready', function(){
 
-  filterCards();
   renderArticlesReadLater();
   $("#search").keyup(controlEnter);
   $('#datetimepicker').datetimepicker();

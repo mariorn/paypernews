@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/' => 'site#home'
   get '/articles' => 'articles#index'
+  get '/articles/author/:id' => 'articles#author', as: 'author_articles'
   get '/articles/:id' => 'articles#show', as: 'article'
   get '/section/:id' => 'articles#section'
   get '/search/:value' => 'articles#search'
@@ -22,8 +23,8 @@ Rails.application.routes.draw do
   get '/read_after/:id' => 'articles#get_title_article'
 
   get '/reports/:user_id' => 'charges#reports', as: :reports
-  get '/read_by_week/:user_id/:days' => 'charges#articlesReader'
-  get '/write_by_week/:user_id/:days' => 'charges#articlesWriter'
+  get '/read_by_week/:user_id/:days' => 'charges#articlesBuy'
+  get '/write_by_week/:user_id/:days' => 'charges#articlesSold'
 
   resources :articles do
     resource :charges

@@ -2,3 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+#panell{
+     margin-top: 50px;
+     padding: 0px;
+   }
+#loginbtn{
+     float: right;
+     margin-bottom: 10px;
+     margin-right: 10px;
+}
+#title{
+  color: white;
+  padding: 8px;
+  margin-top: 0px;
+  text-align: center;
+}
+form{
+  padding:5px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+#username,#password{
+ margin-left: 20px;
+ margin-right: 20px;
+}
+#checkbox{
+ margin-left: 30px;
+}
+#div-button-form{
+  text-align: center;
+}
+
+.add-principal-color{
+  background-color: #20638f !important;
+}
+
+.btn-form{
+  background-color: #20638f !important;
+}
+
+.principal-nav{
+  background-color: #20638f;
+}

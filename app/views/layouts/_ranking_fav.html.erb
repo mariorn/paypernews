@@ -1,6 +1,8 @@
-<div class="ranking-cards">
-   <h5>Más recientes:</h5>
-   <% @redis_recents.each do |article| %>
+
+
+<div class="ranking-cards z-depth-1">
+   <h5>Mejor puntuadas</h5>
+   <% @redis_score.each do |article| %>
      <% if Article.find(article['id'].to_i).access?(current_user) %>
        <p>
          <%= link_to(article['title'], article_path(article['id'].to_i)) %>
@@ -9,7 +11,7 @@
        <p>
          <%= article['title'] %>
        </p>
-      <div class="center-align">
+       <div class="center-align">
        <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
          <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                  data-key = <%= Rails.configuration.stripe[:publishable_key] %>
@@ -17,7 +19,7 @@
                  data-amount = <%= article['price'].to_i %> >
          </script>
        <% end %>
-      </div>
+     </div>
      <% end %>
    <% end %>
 </div>

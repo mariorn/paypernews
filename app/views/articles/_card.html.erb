@@ -5,6 +5,10 @@
         <%= article.categories.first.name %>
       </div>
     <% end %>
+    
+    <% if article.access?(current_user) %>
+      <a href="#" class="material-icons button-read-after" value=<%= article.id %> >restore</a>
+    <% end %>
 
     <div class="date">
       <span class="day"><%= article.created_at.to_time.day %></span>
@@ -13,8 +17,10 @@
   </div>
 
   <div class="card-content">
-    <span class="my-card-title card-title"><%= article.title %></span>
-    <p class="my-card-lead"><%= article.lead %></p>
+    <span class="my-card-title card-title">
+      <%= link_to(article.get_title_limit, article_path(article), :class => "check-later-read") %>
+    </span>
+    <p class="my-card-lead"><%= article.get_lead_limit %></p>
   </div>
 
   <div class="card-writer">
@@ -31,7 +37,7 @@
       <div class="col s6 author center">
         <div class="chip">
           <img src= <%= User.find(article.user_id).avatar.url %> alt="Contact Person">
-          <%= User.find(article.user_id).name %>
+          <%=  link_to(User.find(article.user_id).name, author_articles_path(article.user_id)) %>
         </div>
       </div>
       <div class="col s6">
@@ -46,9 +52,6 @@
   <div class="card-action">
     <% if article.access?(current_user) %>
       <%= link_to("LEER", article_path(article), :class => "check-later-read") %>
-      <a href="#" class="button-read-after" value=<%= article.id %>
-        >LEER DESPUÉS</a>
-
     <% else %>
       <%= form_tag article_charges_path(article), :class => "form-pay-article" do %>
         <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"

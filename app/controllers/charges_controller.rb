@@ -34,19 +34,19 @@ class ChargesController < ApplicationController
   end
 
 
-  def articlesReader
+  def articlesBuy
     @user = User.find(params[:user_id])
-    @current_week_read = Charge.totalArticlesRead(@user, params[:days].to_i)
+    @current_read = Charge.totalArticlesBuy(@user, params[:days].to_i)
 
-    render json: @current_week_read
+    render json: @current_read
   end
 
 
-  def articlesWriter
+  def articlesSold
     @user = User.find(params[:user_id])
-    @current_week_write = Charge.totalArticlesWrite(@user, params[:days].to_i)
+    @current_sold = Charge.totalArticlesSold(@user, params[:days].to_i)
 
-    render json: @current_week_write
+    render json: @current_sold
   end
 
 

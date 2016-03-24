@@ -1,25 +1,23 @@
-<div class="ranking-cards">
-  <h5>Más vistas:</h5>
-  <% @redis_views.each do |article| %>
-
-    <% if Article.find(article['id'].to_i).access?(current_user) %>
-      <p>
-        <%= link_to(article['title'], article_path(article['id'].to_i)) %>
-      </p>
-    <% else %>
-      <p>
-        <%= article['title'] %>
-      </p>
+<div class="ranking-cards z-depth-1">
+   <h5>Más recientes</h5>
+   <% @redis_recents.each do |article| %>
+     <% if Article.find(article['id'].to_i).access?(current_user) %>
+       <p>
+         <%= link_to(article['title'], article_path(article['id'].to_i)) %>
+       </p>
+     <% else %>
+       <p>
+         <%= article['title'] %>
+       </p>
       <div class="center-align">
-      <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
-        <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                data-key = <%= Rails.configuration.stripe[:publishable_key] %>
-                data-description = "An article subscription"
-                data-amount = <%= article['price'].to_i %> >
-        </script>
-      <% end %>
+       <%= form_tag article_charges_path(article['id'].to_i), :class => "form-pay-article" do %>
+         <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                 data-key = <%= Rails.configuration.stripe[:publishable_key] %>
+                 data-description = "An article subscription"
+                 data-amount = <%= article['price'].to_i %> >
+         </script>
+       <% end %>
       </div>
-    <% end %>
-
-  <% end %>
+     <% end %>
+   <% end %>
 </div>

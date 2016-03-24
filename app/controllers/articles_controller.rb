@@ -87,6 +87,14 @@ class ArticlesController < ApplicationController
     render 'index'
   end
 
+  def author
+    @articles = Article.where(user_id: params[:id]).where("publish_at < ?", "%#{DateTime.current()}%").order(created_at: :desc)
+    render 'index'
+  end
+
+
+
+
   def increase_score
     @article = Article.find_by(id: params[:id])
     @article.increase_score
