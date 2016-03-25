@@ -26,7 +26,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
   protected
 
   def update_needs_confirmation?(resource, previous)

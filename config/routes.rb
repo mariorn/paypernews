@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   get '/read_after/:id' => 'articles#get_title_article'
 
   get '/reports/:user_id' => 'charges#reports', as: :reports
-  get '/read_by_week/:user_id/:days' => 'charges#articlesBuy'
-  get '/write_by_week/:user_id/:days' => 'charges#articlesSold'
+  get '/read_by_week/:user_id/:days' => 'charges#articles_buy'
+  get '/write_by_week/:user_id/:days' => 'charges#articles_sold'
 
   resources :articles do
     resource :charges

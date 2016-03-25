@@ -17,12 +17,13 @@
         <% else %>
           <a href="/" class="my-logo brand-logo center">PayPerNews</a>
         <% end %>
-        <ul id="nav-mobile" class="my-sign-buttons right hide-on-med-and-down">
+
           <% unless user_signed_in? %>
-            <li><%= link_to 'Regístrate', new_user_registration_path %> </li>
-            <li><%= link_to 'Login', new_user_session_path %></li>
+            <ul id="nav-mobile" class="my-sign-buttons right hide-on-med-and-down">
+              <li><%= link_to 'Regístrate', new_user_registration_path %> </li>
+              <li><%= link_to 'Login', new_user_session_path %></li>
+            </ul>
           <% end %>
-        </ul>
       </div>
     </div>
   </div>

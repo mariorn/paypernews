@@ -1,13 +1,15 @@
-<div class="card">
+<div class="card hoverable">
   <div class="card-category">
     <% if article.categories.first %>
       <div class="chip">
         <%= article.categories.first.name %>
       </div>
     <% end %>
-    
+
     <% if article.access?(current_user) %>
-      <a href="#" class="material-icons button-read-after" value=<%= article.id %> >restore</a>
+      <a href="#" class="material-icons button-read-after tooltipped"
+      data-position="left" data-delay="50" data-tooltip="Leer después"
+      value=<%= article.id %> >restore</a>
     <% end %>
 
     <div class="date">
@@ -53,12 +55,16 @@
     <% if article.access?(current_user) %>
       <%= link_to("LEER", article_path(article), :class => "check-later-read") %>
     <% else %>
-      <%= form_tag article_charges_path(article), :class => "form-pay-article" do %>
-        <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                data-key = <%= Rails.configuration.stripe[:publishable_key] %>
-                data-description = "An article subscription"
-                data-amount = <%= article.price %> >
-        </script>
+      <% if current_user %>
+        <%= form_tag article_charges_path(article), :class => "form-pay-article" do %>
+          <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                  data-key = <%= Rails.configuration.stripe[:publishable_key] %>
+                  data-description = "An article subscription"
+                  data-amount = <%= article.price %> >
+          </script>
+        <% end %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path %>
       <% end %>
     <% end %>
   </div>

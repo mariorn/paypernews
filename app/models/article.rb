@@ -51,5 +51,4 @@ class Article < ActiveRecord::Base
   def get_lead_limit
     self.lead.length > 260 ? self.lead[0..260] + "..." : self.lead
   end
-
 end

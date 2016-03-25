@@ -9,8 +9,7 @@ module Admin
     before_filter :authenticate_admin
 
     def authenticate_admin
-      redirect_to "/" unless current_user.is_admin?
-
+      redirect_to '/' unless current_user.is_admin?
     end
 
     # Override this value to specify the number of elements to display at a time

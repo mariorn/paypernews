@@ -1,16 +1,14 @@
 <div class="row">
   <% Category.all.order(id: :asc).each do |cat| %>
-
-        <div class="col s4">
-          <div class="category-card">
-            <div class="category-image">
-              <a href=<%= "/section/#{cat.id}" %> > <img src=<%= cat.image %> </a>
-            </div>
-            <div class="category-action">
-              <a href=<%= "/section/#{cat.id}" %> > <%= cat.name %> </a>
-            </div>
-          </div>
+    <div class="col s12 m6 l4">
+      <div class="category-card">
+        <div class="category-image">
+          <a href=<%= "/section/#{cat.id}" %> > <img src=<%= cat.image %> </a>
         </div>
-
+        <div class="category-action">
+          <a href=<%= "/section/#{cat.id}" %> > <%= cat.name %> </a>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>

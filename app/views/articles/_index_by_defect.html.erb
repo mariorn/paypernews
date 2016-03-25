@@ -1,7 +1,7 @@
 
 <div class="row">
   <% @articles.each do |article| %>
-    <div class="col s4">
+    <div class="col s12 m6 l4">
       <%= render partial: "articles/card", object: article, as: 'article' %>
     </div>
   <% end %>
