@@ -20,7 +20,11 @@
 
   <div class="card-content">
     <span class="my-card-title card-title">
-      <%= link_to(article.get_title_limit, article_path(article), :class => "check-later-read") %>
+      <% if current_user %>
+        <%= link_to(article.get_title_limit, article_path(article), :class => "check-later-read") %>
+      <% else %>
+        <a href="#modal1" class="modal-trigger"> <%= article.get_title_limit %> </a>
+      <% end %>
     </span>
     <p class="my-card-lead"><%= article.get_lead_limit %></p>
   </div>

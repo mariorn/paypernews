@@ -1,14 +1,6 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$(function() {
-    $(".browser-default").on('change', function(event) {
-        $('#select-form').val(event.currentTarget.value);
-        // re-initialize material-select
-        $('#select-form').material_select();
-    });
-});
-
 function controlEnter(e){
   if(e.which == 13){
     e.preventDefault();
@@ -52,6 +44,15 @@ var existIdReadLater = function(article_id){
   }
   return -1;
 };
+
+
+$(function() {
+    $(".browser-default").on('change', function(event) {
+        $('#select-form').val(event.currentTarget.value);
+        // re-initialize material-select
+        $('#select-form').material_select();
+    });
+});
 
 
 var addArticle = function(e){
@@ -129,4 +130,5 @@ $(document).on('ready', function(){
   $('#no-like-button').on('click', function(){increaseScore(-1)});
   $('.button-read-after').on('click', addArticle);
   $('.ranking-cards').on('click', '.check-later-read', removeArticle);
+  $('.modal-trigger').leanModal();
 });
