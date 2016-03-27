@@ -1,10 +1,6 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-// var uri = "http://localhost:3000/";
-
-var uri = window.location.host + "/";
-
 jQuery(function ($) {
   var show_error, stripeResponseHandler;
   $("#new_registration").submit(function (event) {
@@ -22,7 +18,7 @@ function generateReportsReader (days, chart){
   var user_id = path_array[path_array.length - 1 ];
 
   $.ajax({
-    url: uri + "read_by_week/" + user_id + "/" + days,
+    url: "http://" + window.location.host + "/read_by_week/" + user_id + "/" + days,
     success: function (response){
 
       var dataResponse = response;
@@ -84,7 +80,7 @@ function generateReportsWriter (days, chart){
   var user_id = path_array[path_array.length - 1 ];
 
   $.ajax({
-    url: uri + "write_by_week/" + user_id + "/" + days,
+    url: "http://" + window.location.host + "/write_by_week/" + user_id + "/" + days,
     success: function (response){
 
       var dataResponse = response;

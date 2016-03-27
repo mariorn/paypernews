@@ -1,13 +1,9 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-var uri = window.location.host + "/";
-
 $(function() {
     $(".browser-default").on('change', function(event) {
-      console.log(event.currentTarget.value);
         $('#select-form').val(event.currentTarget.value);
-
         // re-initialize material-select
         $('#select-form').material_select();
     });
@@ -27,7 +23,7 @@ var increaseScore = function(value){
 
   if(value > 0){
     $.ajax({
-      url: uri + "increase_likes/" + article_id,
+      url: "http://" + window.location.host + "/increase_likes/" + article_id,
       success: function (response){
         $('#like-button').css('display','none');
         $('#no-like-button').css('display','block');
@@ -36,7 +32,7 @@ var increaseScore = function(value){
 
   }else{
       $.ajax({
-        url: uri + "decrease_likes/" + article_id,
+        url: "http://" + window.location.host + "/decrease_likes/" + article_id,
         success: function (response){
           $('#like-button').css('display','block');
           $('#no-like-button').css('display','none');
@@ -64,8 +60,9 @@ var addArticle = function(e){
   var that = this;
 
   $.ajax({
-    url: uri + "read_after/" + article_id,
+    url: "http://" + window.location.host + "/read_after/" + article_id,
     success: function (response){
+
       var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
       var position = existIdReadLater(article_id);
       if(position < 0){
