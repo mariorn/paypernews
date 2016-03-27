@@ -1,7 +1,7 @@
 
 
 <div class="ranking-cards z-depth-1">
-   <h5>Mejor puntuadas</h5>
+   <h5>Más puntuadas</h5>
    <% @redis_score.each do |article| %>
      <% if Article.find(article['id'].to_i).access?(current_user) %>
        <p>

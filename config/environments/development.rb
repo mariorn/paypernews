@@ -38,4 +38,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:8017bfe0472176c1d21275bb22f78fb0@squawfish.redistogo.com:9445'
+
 end

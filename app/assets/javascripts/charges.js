@@ -1,7 +1,9 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-var uri = "http://localhost:3000/";
+// var uri = "http://localhost:3000/";
+
+var uri = window.location.host + "/";
 
 jQuery(function ($) {
   var show_error, stripeResponseHandler;

@@ -1,29 +1,20 @@
 class Charge < ActiveRecord::Base
 
-  # def process_payment
-  #   customer = Stripe::Customer.create email: current_user.email,
-  #                                      card: card_token
-  #
-  #   Stripe::Charge.create customer: customer.id,
-  #                         amount: @article.price,
-  #                         description: "Compra de artículo #{@article.id} de NewsPay",
-  #                         currency: 'eur'
-  # end
-
-
   def self.totalArticlesBuy(user, days)
     from = (Date.today - days + 1).to_time
     to = (Date.today + 1).to_time
 
     @transactions = user.transactions.where(created_at: from..to)
-    @transactions_by_days ={Monday: {total: 0, total_price: 0},
+    @transactions_by_days =
+                          {
+                           Monday: {total: 0, total_price: 0},
                            Tuesday: {total: 0, total_price: 0},
                            Wednesday: {total: 0, total_price: 0},
                            Thursday: {total: 0, total_price: 0},
                            Friday: {total: 0, total_price: 0},
                            Saturday: {total: 0, total_price: 0},
                            Sunday: {total: 0, total_price: 0}
-                         }
+                          }
 
     @transactions.each do |transaction|
       price = Article.find(transaction.article_id).price
@@ -42,14 +33,16 @@ class Charge < ActiveRecord::Base
 
     @transactions = Transaction.where(created_at: from..to)
     @articles = Article.where(user_id: user.id).pluck('id')
-    @transactions_by_days = {Monday: {total: 0, total_price: 0},
-                             Tuesday: {total: 0, total_price: 0},
-                             Wednesday: {total: 0, total_price: 0},
-                             Thursday: {total: 0, total_price: 0},
-                             Friday: {total: 0, total_price: 0},
-                             Saturday: {total: 0, total_price: 0},
-                             Sunday: {total: 0, total_price: 0}
-                           }
+    @transactions_by_days =
+                          {
+                           Monday: {total: 0, total_price: 0},
+                           Tuesday: {total: 0, total_price: 0},
+                           Wednesday: {total: 0, total_price: 0},
+                           Thursday: {total: 0, total_price: 0},
+                           Friday: {total: 0, total_price: 0},
+                           Saturday: {total: 0, total_price: 0},
+                           Sunday: {total: 0, total_price: 0}
+                          }
 
      @transactions.each do |transaction|
        if(@articles.include?(transaction.article_id))

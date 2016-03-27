@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-var uri = "http://localhost:3000/";
+var uri = window.location.host + "/";
 
 $(function() {
     $(".browser-default").on('change', function(event) {
@@ -12,13 +12,6 @@ $(function() {
         $('#select-form').material_select();
     });
 });
-
-$(".hover").mouseleave(
-    function () {
-      $(this).removeClass("hover");
-    }
-);
-
 
 function controlEnter(e){
   if(e.which == 13){
@@ -73,24 +66,26 @@ var addArticle = function(e){
   $.ajax({
     url: uri + "read_after/" + article_id,
     success: function (response){
-
       var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
       var position = existIdReadLater(article_id);
       if(position < 0){
         pendings.push({id: response.id, title: response.title});
         window.localStorage.setItem( "pendings" , JSON.stringify(pendings));
-        $(that).attr("data-tooltip", "Leído");
-        $(that).css("color","red");
+        changeState($(that), "red", "Leído");
       }else{
         pendings.splice(position , 1)
         window.localStorage.setItem( "pendings" , JSON.stringify(pendings));
-        $(that).attr("data-tooltip", "Leer después");
-        $(that).css("color","#039BE5");
+        changeState($(that), "#039BE5", "Leer después");
       }
       renderArticlesReadLater();
     }
   });//ajax
 };
+
+var changeState = function(element, color, message){
+  element.css("color", color);
+  element.attr("data-tooltip", message);
+}
 
 
 var renderArticlesReadLater = function(e){
@@ -99,12 +94,18 @@ var renderArticlesReadLater = function(e){
   $('#pending-read p').remove();
 
   for (var i = 0; i < pendings.length; i++) {
-    var newArticleLater = $("<p><a class=\"check-later-read\" href=\"/articles/"+ pendings[i].id + "\">"+pendings[i].title+"</a></p>");
+    var newArticleLater = $("<p><a class=\"check-later-read\" href=\"/articles/"
+                        + pendings[i].id + "\">"+pendings[i].title+"</a></p>");
+
     $("#pending-read").append(newArticleLater);
+    if(existIdReadLater(pendings[i].id) >= 0){
+      changeState($(".button-read-after[value="+pendings[i].id+"]"), "red", "Leído");
+    }
   }
 };
 
 var removeArticle = function(e){
+  e.preventDefault();
   var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
   var parentPendings = $('#pending-read');
   $('#pending-read p').remove();
@@ -118,7 +119,7 @@ var removeArticle = function(e){
     }
   }
   window.localStorage.setItem( "pendings" , JSON.stringify(pendings_def));
-  renderArticlesReadLater();
+  window.location.pathname = e.target.pathname;
 };
 
 
@@ -130,5 +131,5 @@ $(document).on('ready', function(){
   $('#like-button').on('click', function(){increaseScore(1)});
   $('#no-like-button').on('click', function(){increaseScore(-1)});
   $('.button-read-after').on('click', addArticle);
-  $('.check-later-read').on('click', removeArticle);
+  $('.ranking-cards').on('click', '.check-later-read', removeArticle);
 });

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="background-4 nav-wrapper principal-nav col s12">
       <div class="col s1 center home">
-        <a href="/articles"><i class="material-icons">home</i></a>
+        <a href="/"><i class="material-icons">home</i></a>
       </div>
 
       <div class="input-field col s3">
@@ -12,18 +12,20 @@
         <i class="material-icons">close</i>
       </div>
       <div class="col s8">
-        <% if current_user %>
-          <a href="/articles" class="my-logo brand-logo center">PayPerNews</a>
+        <a href="/articles" class="my-logo brand-logo center">PayPerNews</a>
+        <% unless user_signed_in? %>
+          <ul id="nav-mobile" class="my-sign-buttons right hide-on-med-and-down">
+            <li><%= link_to 'Regístrate', new_user_registration_path %> </li>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          </ul>
         <% else %>
-          <a href="/" class="my-logo brand-logo center">PayPerNews</a>
-        <% end %>
 
-          <% unless user_signed_in? %>
-            <ul id="nav-mobile" class="my-sign-buttons right hide-on-med-and-down">
-              <li><%= link_to 'Regístrate', new_user_registration_path %> </li>
-              <li><%= link_to 'Login', new_user_session_path %></li>
-            </ul>
-          <% end %>
+          <div class="chip right signed-user">
+            <img src= <%= User.find(current_user.id).avatar.url %> alt="Contact Person">
+            <%=  link_to(User.find(current_user.id).name, edit_user_path(current_user.id)) %>
+          </div>
+
+        <% end %>
       </div>
     </div>
   </div>

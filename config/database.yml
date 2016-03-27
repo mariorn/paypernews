@@ -4,7 +4,7 @@ general: &general
     secret_key: sk_test_5wDwRn3Q2f0hzQWdHXhmqTMF
     publishable_key: pk_test_wsnymc3x9YV6yTihxjC39Dom
 
-    
+
 default: &default
  adapter: postgresql
  encoding: unicode
@@ -13,19 +13,19 @@ default: &default
 
 development:
   <<: *default
-  database: newspay_development
+  database: paypernews_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: newspay_test
+  database: paypernews_test
 
 production:
  adapter: postgresql
  encoding: unicode
  pool: 5
- database: newspay_production
- username: newspay
- password: <%= ENV['NEWSPAY_DATABASE_PASSWORD'] %>
+ database: paypernews_production
+ username: paypernews
+ password: <%= ENV['PAYPERNEWS_DATABASE_PASSWORD'] %>
