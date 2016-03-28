@@ -17,19 +17,9 @@
         <%= yield %>
     </div>
 
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>¿Quieres leer las noticias?</h4>
-        <p>
-          Necesitas iniciar sesión para poder ver las noticias. Si aún no eres
-          usuario, regístrate. ¿A qué esperas? Únete.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <a href="/users/sign_up" class=" modal-action modal-close waves-effect waves-green btn-flat">Regístrate</a>
-        <a href="/users/sign_in" class=" modal-action modal-close waves-effect waves-green btn-flat">Login</a>
-      </div>
-    </div>
+    <%= render "layouts/modals" %>
+    <%= render "layouts/footer" %>
+
 
 
     <!-- Compiled and minified JavaScript -->

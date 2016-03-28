@@ -19,6 +19,11 @@ RSpec.describe User, type: :model do
       users = User.count
       expect(users).to be(1)
     end
+
+    it "returns the name of user1" do
+      expect(@user1.name).to eq("test")
+    end
+
   end
 
   context 'two users with different email' do
@@ -38,5 +43,10 @@ RSpec.describe User, type: :model do
       users = User.count
       expect(users).to be(2)
     end
+
+    it "returns the names of users" do
+      expect(@user1.name).to eq(@user2.name)
+    end
+
   end
 end

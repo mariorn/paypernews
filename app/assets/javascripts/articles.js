@@ -15,7 +15,7 @@ var increaseScore = function(value){
 
   if(value > 0){
     $.ajax({
-      url: "https://" + window.location.host + "/increase_likes/" + article_id,
+      url: "http://" + window.location.host + "/increase_likes/" + article_id,
       success: function (response){
         $('#like-button').css('display','none');
         $('#no-like-button').css('display','block');
@@ -24,7 +24,7 @@ var increaseScore = function(value){
 
   }else{
       $.ajax({
-        url: "https://" + window.location.host + "/decrease_likes/" + article_id,
+        url: "http://" + window.location.host + "/decrease_likes/" + article_id,
         success: function (response){
           $('#like-button').css('display','block');
           $('#no-like-button').css('display','none');
@@ -60,20 +60,25 @@ var addArticle = function(e){
   var article_id = e.currentTarget.attributes.value.value;
   var that = this;
 
+  $(that).removeClass('animated bounce');
+
   $.ajax({
-    url: "https://" + window.location.host + "/read_after/" + article_id,
+    url: "http://" + window.location.host + "/read_after/" + article_id,
     success: function (response){
 
       var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
       var position = existIdReadLater(article_id);
+      
       if(position < 0){
         pendings.push({id: response.id, title: response.title});
         window.localStorage.setItem( "pendings" , JSON.stringify(pendings));
         changeState($(that), "red", "Leído");
+        $(that).addClass('animated bounce');
       }else{
         pendings.splice(position , 1)
         window.localStorage.setItem( "pendings" , JSON.stringify(pendings));
         changeState($(that), "#039BE5", "Leer después");
+        $(that).addClass('animated bounce');
       }
       renderArticlesReadLater();
     }
