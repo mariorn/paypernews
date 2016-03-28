@@ -15,7 +15,7 @@ var increaseScore = function(value){
 
   if(value > 0){
     $.ajax({
-      url: "http://" + window.location.host + "/increase_likes/" + article_id,
+      url: "https://" + window.location.host + "/increase_likes/" + article_id,
       success: function (response){
         $('#like-button').css('display','none');
         $('#no-like-button').css('display','block');
@@ -24,7 +24,7 @@ var increaseScore = function(value){
 
   }else{
       $.ajax({
-        url: "http://" + window.location.host + "/decrease_likes/" + article_id,
+        url: "https://" + window.location.host + "/decrease_likes/" + article_id,
         success: function (response){
           $('#like-button').css('display','block');
           $('#no-like-button').css('display','none');
@@ -61,7 +61,7 @@ var addArticle = function(e){
   var that = this;
 
   $.ajax({
-    url: "http://" + window.location.host + "/read_after/" + article_id,
+    url: "https://" + window.location.host + "/read_after/" + article_id,
     success: function (response){
 
       var pendings = JSON.parse(window.localStorage.getItem("pendings")) || [] ;
