@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/tags/:tag' => 'articles#index', as: :tag
   get '/increase_likes/:id' => 'articles#increase_score'
   get '/decrease_likes/:id' => 'articles#decrease_score'
-  get '/read_after/:id' => 'articles#get_title_article'
+  get '/read_after/:id' => 'articles#get_title_article', as: 'article_json'
 
   get '/reports/:user_id' => 'charges#reports', as: :reports
   get '/read_by_week/:user_id/:days' => 'charges#articles_buy'

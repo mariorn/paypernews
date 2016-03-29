@@ -10,7 +10,7 @@ RSpec.describe ArticlesController, type: :controller do
               password: "12345678",
               password_confirmation: "12345678"
               })
-        article = user.articles.create({
+        user.articles.create({
               title: 'Título',
               lead: 'Entradilla',
               body: 'Body',
@@ -29,6 +29,22 @@ RSpec.describe ArticlesController, type: :controller do
     it "returns a list of articles" do
       get :index, user_id: @user.id
       expect(assigns(:articles)).to eq(@articles)
+    end
+
+    it "returns a JSON article" do
+      get :get_title_article, id: @user.articles.last.id
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body["title"]).to eq("Título")
+    end
+
+    it "returns decrease likes" do
+      get :increase_score, id: @user.articles.last.id
+      expect(@user.articles.last.score).to eq(1)
+    end
+
+    it "returns increase likes" do
+      get :decrease_score, id: @user.articles.last.id
+      expect(@user.articles.last.score).to eq(-1)
     end
 
   end

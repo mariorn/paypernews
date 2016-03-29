@@ -16,6 +16,10 @@ RSpec.describe "Users", type: :routing do
     expect(get(users_path)).to route_to(:controller => 'users', :action => 'index')
   end
 
+  it 'routes /users/new to the users controller' do
+    expect(get(new_user_path)).to route_to(:controller => 'users', :action => 'new')
+  end
+
   it 'routes /users to the users controller' do
     expect(post(user_registration_path)).to route_to(:controller => 'registrations', :action => 'create')
   end
